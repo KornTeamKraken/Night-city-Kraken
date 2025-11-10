@@ -10,21 +10,24 @@
   <meta property="og:description" content="Préinscris-toi pour recevoir une invitation exclusive." />
   <meta property="og:image" content="assets/mainpage.png" />
   <meta property="og:type" content="website" />
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico">
   <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <!-- Tailwind Play CDN for quick prototype -->
+  <!-- Tailwind Play CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { font-family: 'Orbitron', sans-serif; background:#05060a; color:#e6eef8; }
-    .hero { background-size: cover; background-position:center; }
+    .hero { background-size: cover; background-position:center; background-repeat:no-repeat; }
     .neon { text-shadow: 0 0 10px rgba(124,58,237,.8), 0 0 30px rgba(99,102,241,.6); }
+    .lore-card:hover { transform: scale(1.05); transition: all 0.3s ease; }
   </style>
 </head>
 <body class="min-h-screen">
   <!-- Header -->
   <header class="flex items-center justify-between p-6">
     <div class="flex items-center gap-4">
-      <img src="assets/mainpage.png" alt="Kraken logo" class="h-10">
+      <img src="assets/logo.png" alt="Kraken logo" class="h-12 w-12">
       <h1 class="text-xl">KRAKEN</h1>
     </div>
     <nav class="space-x-4">
@@ -40,7 +43,7 @@
       <h2 class="text-5xl neon">Enter the City</h2>
       <p class="mt-4 max-w-xl">Kraken — jeu mobile manga cyberpunk. Mine, explore, capture, influence la cité.</p>
       <div class="mt-6 flex gap-4 justify-center">
-        <a href="#join" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500">S'inscrire</a>
+        <a href="https://forms.gle/heYfufVBvfXJ1eju9" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500">S'inscrire</a>
         <a href="#trailer" class="px-6 py-3 border rounded-lg">Voir trailer</a>
       </div>
     </div>
@@ -48,55 +51,58 @@
 
   <!-- Lore -->
   <section id="lore" class="p-12 bg-[#071022]">
-    <div class="max-w-5xl mx-auto">
-      <h3 class="text-3xl neon mb-6 text-center">Univers de la Cité Kraken</h3>
-      
-      <p class="mb-8 text-lg text-gray-300 text-center">
-        La cité Kraken s'éveille sous les néons violets et roses. Entre mines énergétiques, portails digitaux et marchés cyberpunk, chaque recoin cache un secret que seuls les plus audacieux osent explorer.
+    <div class="max-w-6xl mx-auto">
+      <h3 class="text-3xl neon mb-8 text-center">Univers de la Cité Kraken</h3>
+      <p class="mb-12 text-lg text-gray-300 text-center">
+        La cité Kraken s'éveille sous les néons violets et roses. Entre mines énergétiques, portails digitaux et marchés cyberpunk, chaque recoin cache un secret que seuls les plus audacieux osent explorer.  
+        Prépare-toi à découvrir un monde où chaque action de joueur influence la cité…
       </p>
 
-      <div class="mt-6 grid md:grid-cols-2 gap-8">
-
+      <div class="mt-6 grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         <!-- Main Page / Vue globale -->
-        <div>
-          <img src="assets/mainpage.png" class="rounded-lg shadow-lg hover:scale-105 transition-all cursor-pointer">
-          <p class="mt-2 text-sm text-gray-400">
-            Vue globale de la cité Kraken — une métropole vibrante, saturée de néons et de drones. Les gratte-ciels scintillent, et le mot "KRAKEN" apparaît en enseignes holographiques, comme un clin d’œil aux initiés.
-          </p>
+        <div class="lore-card rounded-lg shadow-lg overflow-hidden cursor-pointer">
+          <img src="assets/mainpage.png" class="w-full h-48 object-cover">
+          <div class="p-4 bg-[#0a0c1a]/80">
+            <h4 class="text-lg neon mb-2">Cité Kraken</h4>
+            <p class="text-gray-400 text-sm">Vue globale de la cité Kraken — métropole saturée de néons et drones. Le mot "KRAKEN" apparaît en enseignes holographiques.</p>
+          </div>
         </div>
 
         <!-- Mine -->
-        <div>
-          <img src="assets/mine.png" class="rounded-lg shadow-lg hover:scale-105 transition-all cursor-pointer">
-          <p class="mt-2 text-sm text-gray-400">
-            Les mines énergétiques extraient l'énergie instable qui alimente la cité. Les robots de maintenance patrouillent, mais certains travailleurs affirment avoir vu des anomalies lumineuses dans le sous-sol.
-          </p>
+        <div class="lore-card rounded-lg shadow-lg overflow-hidden cursor-pointer">
+          <img src="assets/mine.png" class="w-full h-48 object-cover">
+          <div class="p-4 bg-[#0a0c1a]/80">
+            <h4 class="text-lg neon mb-2">Mines énergétiques</h4>
+            <p class="text-gray-400 text-sm">Les mines extraient l’énergie instable qui alimente la cité. Robots de maintenance et anomalies lumineuses mystérieuses peuplent les tunnels.</p>
+          </div>
         </div>
 
         <!-- Adventures / Portails -->
-        <div>
-          <img src="assets/adventures.png" class="rounded-lg shadow-lg hover:scale-105 transition-all cursor-pointer">
-          <p class="mt-2 text-sm text-gray-400">
-            Les portails digitaux s’ouvrent aléatoirement dans la cité, menant à des mondes parallèles. Chaque exploration est risquée : certains aventuriers disparaissent sans laisser de trace...
-          </p>
+        <div class="lore-card rounded-lg shadow-lg overflow-hidden cursor-pointer">
+          <img src="assets/adventures.png" class="w-full h-48 object-cover">
+          <div class="p-4 bg-[#0a0c1a]/80">
+            <h4 class="text-lg neon mb-2">Portails digitaux</h4>
+            <p class="text-gray-400 text-sm">Portails lumineux menant à des mondes parallèles. Chaque aventure est risquée, certains explorateurs disparaissent sans laisser de trace.</p>
+          </div>
         </div>
 
         <!-- Setting / Salle de commande -->
-        <div>
-          <img src="assets/setting.png" class="rounded-lg shadow-lg hover:scale-105 transition-all cursor-pointer">
-          <p class="mt-2 text-sm text-gray-400">
-            Salle de commande — le cœur technologique de Kraken. Hologrammes, écrans de monitoring et consoles contrôlent la cité. Les logs mentionnent parfois des anomalies mystérieuses signées "KRAKEN".
-          </p>
+        <div class="lore-card rounded-lg shadow-lg overflow-hidden cursor-pointer">
+          <img src="assets/setting.png" class="w-full h-48 object-cover">
+          <div class="p-4 bg-[#0a0c1a]/80">
+            <h4 class="text-lg neon mb-2">Salle de commande</h4>
+            <p class="text-gray-400 text-sm">Centre technologique de Kraken. Hologrammes et consoles contrôlent la cité. Des anomalies mystérieuses signées "KRAKEN" apparaissent parfois.</p>
+          </div>
         </div>
 
         <!-- Shop / Marché cyberpunk -->
-        <div>
-          <img src="assets/shop.png" class="rounded-lg shadow-lg hover:scale-105 transition-all cursor-pointer">
-          <p class="mt-2 text-sm text-gray-400">
-            Marché cyberpunk — ruelles et stands lumineux où les NFTs ne sont pas que décoratifs : ils confèrent des avantages uniques aux explorateurs de la cité. Attention aux enchères illégales…
-          </p>
+        <div class="lore-card rounded-lg shadow-lg overflow-hidden cursor-pointer">
+          <img src="assets/shop.png" class="w-full h-48 object-cover">
+          <div class="p-4 bg-[#0a0c1a]/80">
+            <h4 class="text-lg neon mb-2">Marché cyberpunk</h4>
+            <p class="text-gray-400 text-sm">Ruelles et stands lumineux où les NFTs offrent des avantages uniques. Attention aux enchères illégales et aux surprises du marché.</p>
+          </div>
         </div>
-
       </div>
 
       <p class="mt-12 text-center text-gray-500 italic text-sm">
@@ -122,14 +128,13 @@
     <div class="max-w-2xl mx-auto text-center">
       <h3 class="text-2xl neon">Pré-inscris-toi</h3>
       <p class="mt-2">Reçois une invitation exclusive + code d'early-access.</p>
-      <!-- Lien Google Form -->
       <a href="https://forms.gle/heYfufVBvfXJ1eju9" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500">S'inscrire</a>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="p-6 text-center text-sm">
-    <p>© Kraken — project 2025 </p>
+    <p>© Kraken — projet indépendant</p>
     <div class="mt-3 space-x-3">
       <a href="https://discord.gg/TONDISCORD" target="_blank">Discord</a>
       <a href="https://x.com/TON_HANDLE" target="_blank">X</a>
@@ -138,4 +143,3 @@
   </footer>
 </body>
 </html>
-
