@@ -1,1 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Kraken — Enter the City</title>
+  <meta name="description" content="Kraken — jeu mobile cyberpunk. Préinscriptions, lore et accès early." />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Kraken — Enter the City" />
+  <meta property="og:description" content="Préinscris-toi pour recevoir une invitation exclusive." />
+  <meta property="og:image" content="assets/mainpage.jpg" />
+  <meta property="og:type" content="website" />
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { font-family: 'Orbitron', sans-serif; background:#05060a; color:#e6eef8; }
+    .hero { background-size: cover; background-position:center; }
+    .neon { text-shadow: 0 0 10px rgba(124,58,237,.8), 0 0 30px rgba(99,102,241,.6); }
+  </style>
+</head>
+<body class="min-h-screen">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between p-6">
+    <div class="flex items-center gap-4">
+      <img src="assets/logo.png" alt="Kraken logo" class="h-10">
+      <h1 class="text-xl">KRAKEN</h1>
+    </div>
+    <nav class="space-x-4">
+      <a href="#lore" class="hover:underline">Lore</a>
+      <a href="#game" class="hover:underline">Gameplay</a>
+      <a href="#join" class="hover:underline">Pré-inscription</a>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section id="home" class="hero h-[70vh] flex flex-col justify-center items-center text-center" style="background-image:url('assets/mainpage.jpg')">
+    <div class="backdrop-blur-sm p-6 rounded-md bg-black/30">
+      <h2 class="text-5xl neon">Enter the City</h2>
+      <p class="mt-4 max-w-xl">Kraken — jeu mobile manga cyberpunk. Mine, explore, capture, influence la cité.</p>
+      <div class="mt-6 flex gap-4 justify-center">
+        <a href="#join" class="px-6 py-3 border rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500">Pré-inscription</a>
+        <a href="#trailer" class="px-6 py-3 border rounded-lg">Voir trailer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lore -->
+  <section id="lore" class="p-12 bg-[#071022]">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="text-3xl neon">Univers</h3>
+      <p class="mt-4">La cité Kraken s'éveille entre néons et ports dimensionnels. Les mines extraient une énergie instable…</p>
+      <div class="mt-6 grid md:grid-cols-2 gap-6">
+        <img src="assets/mine.jpg" class="rounded-lg shadow-lg" alt="Mine Kraken">
+        <img src="assets/adventures.jpg" class="rounded-lg shadow-lg" alt="Adventures Kraken">
+      </div>
+    </div>
+  </section>
+
+  <!-- Gameplay -->
+  <section id="game" class="p-12">
+    <div class="max-w-4xl mx-auto">
+      <h3 class="text-3xl neon">Gameplay</h3>
+      <ul class="mt-4 list-disc ml-6">
+        <li>Minage décentralisé (DePIN) — contribue et gagne.</li>
+        <li>Aventures & portails — mondes parallèles et rewards.</li>
+        <li>PvP & NFTs — échanges et raretés fonctionnelles.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Join / Form link -->
+  <section id="join" class="p-12 bg-[#051022]">
+    <div class="max-w-2xl mx-auto text-center">
+      <h3 class="text-2xl neon">Pré-inscris-toi</h3>
+      <p class="mt-2">Reçois une invitation exclusive + code d'early-access.</p>
+      <!-- Lien Google Form -->
+      <a href="https://forms.gle/TON_FORM_SHORTLINK" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500">S'inscrire</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="p-6 text-center text-sm">
+    <p>© Kraken — projet indépendant</p>
+    <div class="mt-3 space-x-3">
+      <a href="https://discord.gg/TONDISCORD" target="_blank">Discord</a>
+      <a href="https://x.com/TON_HANDLE" target="_blank">X</a>
+      <a href="https://tiktok.com/@TON_HANDLE" target="_blank">TikTok</a>
+    </div>
+  </footer>
+
+</body>
+</html>
 
