@@ -21,6 +21,8 @@
     .hero { background-size: cover; background-position:center; background-repeat:no-repeat; }
     .neon { text-shadow: 0 0 10px rgba(124,58,237,.8), 0 0 30px rgba(99,102,241,.6); }
     .lore-card:hover { transform: scale(1.05); transition: all 0.3s ease; }
+    .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+    .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
   </style>
 </head>
 <body class="min-h-screen">
@@ -33,6 +35,7 @@
     <nav class="space-x-4">
       <a href="#lore" class="hover:underline">Lore</a>
       <a href="#game" class="hover:underline">Gameplay</a>
+      <a href="#trailer" class="hover:underline">Trailer</a>
       <a href="#roadmap" class="hover:underline">Roadmap</a>
       <a href="#join" class="hover:underline">Pré-inscription</a>
     </nav>
@@ -46,7 +49,7 @@
       <p class="mt-2 text-sm text-purple-300">📱 Disponible sur Android & iOS</p>
       <div class="mt-6 flex gap-4 justify-center">
         <a href="https://forms.gle/heYfufVBvfXJ1eju9" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500">S'inscrire</a>
-        <a href="#trailer" class="px-6 py-3 border rounded-lg">Voir trailer</a>
+        <a href="#trailer" class="px-6 py-3 border rounded-lg hover:bg-white/10 transition">Voir trailer</a>
       </div>
     </div>
   </section>
@@ -122,8 +125,25 @@
     </div>
   </section>
 
+  <!-- Trailer Section -->
+  <section id="trailer" class="p-12 bg-[#071022]">
+    <div class="max-w-5xl mx-auto">
+      <h3 class="text-4xl neon text-center mb-8">🎬 Trailer Officiel</h3>
+      <p class="text-center text-gray-300 mb-8">Plonge dans l'univers cyberpunk de Kraken</p>
+      <div class="video-container rounded-lg overflow-hidden shadow-2xl border-2 border-purple-500/30">
+        <iframe 
+          src="https://www.youtube.com/embed/zwguFh4QWeg" 
+          title="Kraken Trailer" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
   <!-- Roadmap -->
-  <section id="roadmap" class="p-12 bg-[#071022]">
+  <section id="roadmap" class="p-12">
     <div class="max-w-5xl mx-auto">
       <h3 class="text-4xl neon text-center mb-8">🗺️ ROADMAP</h3>
       
