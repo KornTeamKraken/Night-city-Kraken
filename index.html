@@ -27,20 +27,50 @@
 </head>
 <body class="min-h-screen">
   <!-- Header -->
-  <header class="flex items-center justify-between p-6">
-    <div class="flex items-center gap-4">
-      <img src="assets/logo.png" alt="Kraken logo" class="h-12 w-12">
-      <h1 class="text-2xl neon tracking-widest">KRAKEN</h1>
-    </div>
-    <nav class="space-x-4">
-      <a href="#lore" class="hover:underline">Lore</a>
-      <a href="#game" class="hover:underline">Gameplay</a>
-      <a href="#trailer" class="hover:underline">Trailer</a>
-      <a href="#roadmap" class="hover:underline">Roadmap</a>
-      <a href="#join" class="hover:underline">Pré-inscription</a>
-    </nav>
-  </header>
+  <!-- Header -->
+<header class="flex items-center justify-between p-6 flex-wrap bg-[#05060a]">
+  <!-- Logo + Titre -->
+  <div class="flex items-center gap-4 flex-shrink-0">
+    <img src="assets/logo.png" alt="Kraken logo" class="h-12 w-12">
+    <h1 class="text-2xl md:text-3xl neon tracking-widest">KRAKEN</h1>
+  </div>
 
+  <!-- Nav PC -->
+  <nav class="hidden md:flex space-x-4">
+    <a href="#lore" class="hover:underline">Lore</a>
+    <a href="#game" class="hover:underline">Gameplay</a>
+    <a href="#trailer" class="hover:underline">Trailer</a>
+    <a href="#roadmap" class="hover:underline">Roadmap</a>
+    <a href="#join" class="hover:underline">Pré-inscription</a>
+  </nav>
+
+  <!-- Hamburger Mobile -->
+  <div class="md:hidden">
+    <button id="menu-btn" class="text-white text-3xl focus:outline-none">
+      ☰
+    </button>
+  </div>
+
+  <!-- Menu Mobile -->
+  <div id="mobile-menu" class="hidden flex-col space-y-2 mt-4 w-full md:hidden">
+    <a href="#lore" class="block px-4 py-2 rounded hover:bg-purple-700/20">Lore</a>
+    <a href="#game" class="block px-4 py-2 rounded hover:bg-purple-700/20">Gameplay</a>
+    <a href="#trailer" class="block px-4 py-2 rounded hover:bg-purple-700/20">Trailer</a>
+    <a href="#roadmap" class="block px-4 py-2 rounded hover:bg-purple-700/20">Roadmap</a>
+    <a href="#join" class="block px-4 py-2 rounded hover:bg-purple-700/20">Pré-inscription</a>
+  </div>
+</header>
+
+<!-- Script pour le menu mobile -->
+<script>
+  const btn = document.getElementById('menu-btn');
+  const menu = document.getElementById('mobile-menu');
+
+  btn.addEventListener('click', () => {
+    menu.classList.toggle('hidden');
+  });
+</script>
+  
   <!-- Hero -->
   <section id="home" class="hero h-[70vh] flex flex-col justify-center items-center text-center" style="background-image:url('assets/mainpage.jpg')">
     <div class="backdrop-blur-sm p-6 rounded-md bg-black/30">
