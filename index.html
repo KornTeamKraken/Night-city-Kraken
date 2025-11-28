@@ -4,10 +4,10 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Kraken — Enter the City</title>
-  <meta name="description" content="Kraken — jeu mobile cyberpunk. Préinscriptions, lore et accès early." />
+  <meta name="description" content="Kraken — jeu mobile cyberpunk. Préinscriptions, lore et accès early. Token natif sur Solana." />
   <!-- Open Graph -->
   <meta property="og:title" content="Kraken — Enter the City" />
-  <meta property="og:description" content="Préinscris-toi pour recevoir une invitation exclusive." />
+  <meta property="og:description" content="Préinscris-toi pour recevoir une invitation exclusive. Token natif sur Blockchain Solana." />
   <meta property="og:image" content="assets/mainpage.jpg" />
   <meta property="og:type" content="website" />
   <!-- Favicon -->
@@ -20,9 +20,12 @@
     body { font-family: 'Orbitron', sans-serif; background:#05060a; color:#e6eef8; }
     .hero { background-size: cover; background-position:center; background-repeat:no-repeat; }
     .neon { text-shadow: 0 0 10px rgba(124,58,237,.8), 0 0 30px rgba(99,102,241,.6); }
+    .solana-glow { text-shadow: 0 0 10px rgba(158,113,245,.8), 0 0 30px rgba(158,113,245,.6); }
     .lore-card:hover { transform: scale(1.05); transition: all 0.3s ease; }
     .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
     .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    .banner-solana { animation: glow-pulse 2s ease-in-out infinite; }
+    @keyframes glow-pulse { 0%, 100% { box-shadow: 0 0 10px rgba(158,113,245,.4), inset 0 0 10px rgba(158,113,245,.2); } 50% { box-shadow: 0 0 20px rgba(158,113,245,.8), inset 0 0 15px rgba(158,113,245,.4); } }
   </style>
 </head>
 <body class="min-h-screen">
@@ -32,6 +35,17 @@
       <option value="fr">Français</option>
       <option value="en">English</option>
     </select>
+  </div>
+
+  <!-- Bandeau Solana Notification -->
+  <div class="banner-solana bg-gradient-to-r from-purple-900/40 via-purple-800/30 to-purple-900/40 border-b-2 border-purple-500 py-3 px-4">
+    <div class="max-w-6xl mx-auto flex items-center justify-center gap-3 flex-wrap">
+      <span class="text-lg">⚡</span>
+      <p class="text-center solana-glow font-semibold">
+        Token KRAKEN sur la blockchain Solana | KRAKEN token on Solana blockchain
+      </p>
+      <span class="text-lg">⚡</span>
+    </div>
   </div>
 
   <!-- Header -->
@@ -74,6 +88,7 @@
       <h2 class="text-5xl neon" data-i18n="enter">Enter the City</h2>
       <p class="mt-4 max-w-xl" data-i18n="hero-desc">Kraken — jeu mobile manga cyberpunk. Mine, explore, capture, influence la cité.</p>
       <p class="mt-2 text-sm text-purple-300" data-i18n="platform">📱 Disponible sur Android & iOS</p>
+      <p class="mt-2 text-sm text-purple-300 solana-glow font-semibold" data-i18n="hero-solana">⚡ Token KRAKEN sur Solana</p>
       <div class="mt-6 flex gap-4 justify-center">
         <a href="https://forms.gle/heYfufVBvfXJ1eju9" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500" data-i18n="register">S'inscrire</a>
         <a href="#trailer" class="px-6 py-3 border rounded-lg hover:bg-white/10 transition" data-i18n="trailer-cta">Voir trailer</a>
@@ -137,6 +152,7 @@
         <li data-i18n="gameplay-1">Minage décentralisé (DePIN) — contribue et gagne.</li>
         <li data-i18n="gameplay-2">Aventures & portails — mondes parallèles et rewards.</li>
         <li data-i18n="gameplay-3">PvP & NFTs — échanges et raretés fonctionnelles.</li>
+        <li data-i18n="gameplay-4">Token KRAKEN sur Solana — gestion transparente et économie du jeu.</li>
       </ul>
     </div>
   </section>
@@ -164,6 +180,9 @@
         <p class="text-gray-300 leading-relaxed mt-3" data-i18n="roadmap-intro-2">
           Le but ? Créer un écosystème communautaire, où chaque joueur a un rôle, une progression, et peut contribuer à la puissance du monde Kraken... et en être récompensé.
         </p>
+        <p class="text-gray-300 leading-relaxed mt-3 solana-glow" data-i18n="roadmap-intro-3">
+          ⚡ Token KRAKEN et transactions fonctionnent sur la blockchain Solana pour une économie rapide, transparente et décentralisée.
+        </p>
       </div>
       <div class="space-y-8">
         <div class="p-6 rounded-lg bg-gradient-to-r from-green-900/20 to-green-700/10 border border-green-500/30">
@@ -175,6 +194,7 @@
             <li data-i18n="phase0-4">✔ Minage local opérationnel</li>
             <li data-i18n="phase0-5">✔ Blockchain interne stable</li>
             <li data-i18n="phase0-6">✔ Direction artistique manga / neon / deep-sea validée</li>
+            <li data-i18n="phase0-7">✔ Token KRAKEN déployé sur Solana</li>
           </ul>
         </div>
       </div>
@@ -187,6 +207,7 @@
       <h3 class="text-2xl neon" data-i18n="join-title">Pré-inscris-toi</h3>
       <p class="mt-2" data-i18n="join-desc">Reçois une invitation exclusive + code d'early-access.</p>
       <p class="mt-3 text-sm text-gray-400" data-i18n="platform">Application disponible sur 📱 Android & iOS (smartphone et tablette)</p>
+      <p class="mt-3 text-sm text-purple-300 solana-glow font-semibold" data-i18n="join-solana">⚡ Économie Solana</p>
       <a href="https://forms.gle/heYfufVBvfXJ1eju9" target="_blank" class="mt-6 inline-block px-6 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-pink-500" data-i18n="register">S'inscrire</a>
     </div>
   </section>
@@ -194,6 +215,7 @@
   <!-- Footer -->
   <footer class="p-6 text-center text-sm">
     <p>© Kraken — projet indépendant</p>
+    <p class="text-xs text-purple-400 mt-2" data-i18n="footer-solana">Powered by Solana</p>
     <div class="mt-3 space-x-3">
       <a href="https://discord.gg/8cdKp22y" target="_blank">Discord</a>
       <a href="https://x.com/Kraken_city_app" target="_blank">X</a>
@@ -208,6 +230,7 @@
         "enter": "Enter the City",
         "hero-desc": "Kraken — cyberpunk manga mobile game. Mine, explore, capture, influence the city.",
         "platform": "📱 Available on Android & iOS",
+        "hero-solana": "⚡ Native token on Solana",
         "register": "Register",
         "trailer-cta": "Watch trailer",
         "lore": "Lore",
@@ -231,12 +254,14 @@
         "gameplay-1": "Decentralized mining (DePIN) — contribute and earn.",
         "gameplay-2": "Adventures & portals — parallel worlds and rewards.",
         "gameplay-3": "PvP & NFTs — trading and functional rarities.",
+        "gameplay-4": "KRAKEN token on Solana — transparent management and game economy.",
         "trailer-title": "🎬 Official Trailer",
         "trailer-desc": "Dive into the cyberpunk universe of Kraken",
         "roadmap-title": "🗺️ ROADMAP",
         "roadmap-intro-title": "🌑 Introduction",
         "roadmap-intro-1": "Welcome traveler. You have just entered the <span class='text-purple-400 font-bold'>KRAKEN</span> universe — a dark, living, evolving cyberpunk world, built around unique gameplay blending mining, NFT creature capture, adventure, PVP, and advanced blockchain mechanics.",
         "roadmap-intro-2": "The goal? To create a community ecosystem, where every player has a role, progression, and can contribute to the power of the Kraken world... and be rewarded for it.",
+        "roadmap-intro-3": "⚡ All tokens and transactions run natively on the Solana blockchain for a fast, transparent and decentralized economy.",
         "phase0-title": "✅ Phase 0 – Setup & Foundation",
         "phase0-1": "✔ Official website completed",
         "phase0-2": "✔ Structured Discord (categories, channels, roles)",
@@ -244,13 +269,18 @@
         "phase0-4": "✔ Local mining operational",
         "phase0-5": "✔ Internal blockchain stable",
         "phase0-6": "✔ Manga/neon/deep-sea art direction validated",
+        "phase0-7": "✔ KRAKEN token deployed on Solana",
         "join-title": "Pre-register",
-        "join-desc": "Receive an exclusive invitation + early-access code."
+        "join-desc": "Receive an exclusive invitation + early-access code.",
+        "join-solana": "⚡ Native Solana Economy",
+        "footer-solana": "Powered by Solana Blockchain",
+        "solana-banner": "Native KRAKEN token on Solana blockchain"
       },
       fr: {
         "enter": "Enter the City",
         "hero-desc": "Kraken — jeu mobile manga cyberpunk. Mine, explore, capture, influence la cité.",
         "platform": "📱 Disponible sur Android & iOS",
+        "hero-solana": "⚡ Token natif sur Solana",
         "register": "S'inscrire",
         "trailer-cta": "Voir trailer",
         "lore": "Lore",
@@ -274,12 +304,14 @@
         "gameplay-1": "Minage décentralisé (DePIN) — contribue et gagne.",
         "gameplay-2": "Aventures & portails — mondes parallèles et rewards.",
         "gameplay-3": "PvP & NFTs — échanges et raretés fonctionnelles.",
+        "gameplay-4": "Token KRAKEN sur Solana — gestion transparente et économie du jeu.",
         "trailer-title": "🎬 Trailer Officiel",
         "trailer-desc": "Plonge dans l'univers cyberpunk de Kraken",
         "roadmap-title": "🗺️ ROADMAP",
         "roadmap-intro-title": "🌑 Introduction",
         "roadmap-intro-1": "Bienvenue voyageur. Tu viens d'entrer dans l'univers <span class='text-purple-400 font-bold'>KRAKEN</span> – un monde cyberpunk obscur, vivant, évolutif, construit autour d'un gameplay unique mêlant minage, capture de créatures NFT, aventure, PVP, et mécaniques blockchain avancées.",
         "roadmap-intro-2": "Le but ? Créer un écosystème communautaire, où chaque joueur a un rôle, une progression, et peut contribuer à la puissance du monde Kraken... et en être récompensé.",
+        "roadmap-intro-3": "⚡ Tous les tokens et transactions fonctionnent nativement sur la blockchain Solana pour une économie rapide, transparente et décentralisée.",
         "phase0-title": "✅ Phase 0 – Setup & Fondation",
         "phase0-1": "✔ Site web officiel terminé",
         "phase0-2": "✔ Discord structuré (catégories, channels, rôles)",
@@ -287,8 +319,12 @@
         "phase0-4": "✔ Minage local opérationnel",
         "phase0-5": "✔ Blockchain interne stable",
         "phase0-6": "✔ Direction artistique manga / neon / deep-sea validée",
+        "phase0-7": "✔ Token KRAKEN déployé sur Solana",
         "join-title": "Pré-inscris-toi",
-        "join-desc": "Reçois une invitation exclusive + code d'early-access."
+        "join-desc": "Reçois une invitation exclusive + code d'early-access.",
+        "join-solana": "⚡ Économie native Solana",
+        "footer-solana": "Propulsé par la blockchain Solana",
+        "solana-banner": "Token natif KRAKEN sur la blockchain Solana"
       }
     };
 
@@ -306,4 +342,3 @@
   </script>
 </body>
 </html>
-
