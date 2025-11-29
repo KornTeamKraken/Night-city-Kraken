@@ -195,41 +195,70 @@
     </div>
   </section>
 
-  <!-- Staking Modal -->
-  <div id="staking-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-    <div class="bg-[#0a0c1a] border border-cyan-500/30 rounded-lg p-6 max-w-md w-full mx-4">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-2xl neon" data-i18n="stake-modal-title">Staker KRAKEN</h3>
-        <button onclick="toggleStakingForm()" class="text-gray-400 hover:text-white text-2xl">✕</button>
-      </div>
-      <form id="staking-form" class="space-y-4">
-        <div>
-          <label class="block text-sm text-gray-300 mb-2" data-i18n="stake-amount">Montant à staker</label>
-          <input type="number" id="stake-amount" placeholder="1000" min="100" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
-        </div>
-        <div>
-          <label class="block text-sm text-gray-300 mb-2" data-i18n="stake-duration">Durée</label>
-          <select id="stake-duration" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white">
-            <option value="30">30 jours (15% APY)</option>
-            <option value="90">90 jours (35% APY)</option>
-            <option value="180">180 jours (50% APY)</option>
-          </select>
-        </div>
-        <div class="p-3 bg-cyan-500/10 rounded border border-cyan-500/30">
-          <p class="text-sm text-gray-300 mb-1" data-i18n="rewards-estimate">Récompenses estimées</p>
-          <p class="text-2xl text-cyan-400 font-bold" id="rewards-display">0 KRAKEN</p>
-        </div>
-        <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg font-semibold hover:shadow-lg transition" data-i18n="confirm-stake">Confirmer Staking</button>
-      </form>
-    </div>
-  </div>
+  <!-- Solana & SPL Token Script -->
+  <script src="https://unpkg.com/@solana/web3.js@1.88.0/lib/index.iife.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@solana/spl-token@0.3.5/lib/index.iife.js"></script>
+  <script>
+  const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
 
-  <!-- Stats Section -->
-  <section class="p-12 bg-[#071022]">
-    <div class="max-w-6xl mx-auto">
-      <h3 class="text-3xl neon mb-8 text-center" data-i18n="stats-title">📊 Statistiques Presale</h3>
-      <div class="grid md:grid-cols-4 gap-4">
-        <div class="card-hover p-4 rounded-lg bg-[#0a0c1a] border border-purple-500/30 text-center">
-          <p class="text-gray-400 text-sm mb-1" data-i18n="stat-participants">Participants</p>
-          <p class="text-3xl neon" id="stat-participants">2,847</p>
-        </div>
+  // Token KRAKEN SPL (devnet pour test)
+  const TOKEN_MINT = new solanaWeb3.PublicKey("HePinRStcHBA9yHm8apYchaT3KJC2NbTXMdmn1ThRQoj");
+
+  // Wallet presale (⚠️ Devnet pour tests)
+  const PRESALE_WALLET = new solanaWeb3.PublicKey("7RqjtFPJ3z2uVA67BC6WPSU36MFjJpeMgju11Q5vzFzE");
+
+  // Clé privée du wallet presale ⚠️ Jamais exposer en prod
+  let PRESALE_KEYPAIR = null; // Mettre en serveur sécurisé pour production
+
+  let wallet = null;
+
+  // Connecter Phantom
+  async function connectWallet() {
+    if (window.solana && window.solana.isPhantom) {
+      try {
+        const resp = await window.solana.connect();
+        wallet = resp.publicKey;
+        alert('Wallet connecté: ' + wallet.toString());
+      } catch(err) {
+        alert('Erreur connexion wallet: ' + err.message);
+      }
+    } else {
+      alert('Installez Phantom Wallet pour continuer');
+    }
+  }
+
+  // Envoyer tokens KRAKEN depuis presale wallet vers utilisateur
+  async function sendKrakenTokens(amount) {
+    if (!wallet) return alert('Connectez votre wallet');
+    if (!amount || amount <= 0) return alert('Montant invalide');
+    if (!PRESALE_KEYPAIR) return alert('Clé privée presale non configurée côté client !');
+
+    try {
+      const token = new splToken.Token(connection, TOKEN_MINT, splToken.TOKEN_PROGRAM_ID, PRESALE_KEYPAIR);
+
+      const userTokenAccount = await token.getOrCreateAssociatedAccountInfo(wallet);
+      const presaleTokenAccount = await token.getOrCreateAssociatedAccountInfo(PRESALE_WALLET);
+
+      const tx = new solanaWeb3.Transaction().add(
+        splToken.Token.createTransferInstruction(
+          splToken.TOKEN_PROGRAM_ID,
+          presaleTokenAccount.address,
+          userTokenAccount.address,
+          PRESALE_KEYPAIR.publicKey,
+          [],
+          amount * (10 ** 0) // Ajuster décimales token
+        )
+      );
+
+      const signature = await solanaWeb3.sendAndConfirmTransaction(connection, tx, [PRESALE_KEYPAIR]);
+      alert('KRAKEN envoyé ! TXID: ' + signature);
+    } catch(err) {
+      alert('Erreur: ' + err.message);
+    }
+  }
+
+  document.getElementById('connect-wallet-btn').onclick = connectWallet;
+  </script>
+</body>
+</html>
+
