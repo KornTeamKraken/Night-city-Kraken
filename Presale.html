@@ -47,10 +47,10 @@
       <h1 class="text-2xl md:text-3xl neon tracking-widest">KRAKEN</h1>
     </div>
     <nav class="hidden md:flex space-x-4">
-      <a href="index.html" class="hover:underline" data-i18n="home">Accueil</a>
-      <a href="index.html#lore" class="hover:underline" data-i18n="lore">Lore</a>
-      <a href="index.html#roadmap" class="hover:underline" data-i18n="roadmap">Roadmap</a>
-      <a href="#presale" class="hover:underline" data-i18n="crypto">Presale</a>
+      <a href="index.html" class="hover:underline">Accueil</a>
+      <a href="index.html#lore" class="hover:underline">Lore</a>
+      <a href="index.html#roadmap" class="hover:underline">Roadmap</a>
+      <a href="#presale" class="hover:underline">Presale</a>
     </nav>
     <div class="md:hidden">
       <button id="menu-btn" class="text-white text-3xl focus:outline-none">☰</button>
@@ -60,9 +60,9 @@
   <!-- Hero Section -->
   <section class="p-12 bg-gradient-to-b from-purple-900/20 to-[#05060a]">
     <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-5xl neon mb-4" data-i18n="presale-title">Presale KRAKEN</h2>
-      <p class="text-xl text-purple-300 mb-2" data-i18n="presale-desc">Achetez KRAKEN tokens avant le lancement public</p>
-      <p class="text-purple-400 solana-glow font-semibold" data-i18n="presale-solana">⚡ Token natif Solana | Prix en USD</p>
+      <h2 class="text-5xl neon mb-4">Presale KRAKEN</h2>
+      <p class="text-xl text-purple-300 mb-2">Achetez KRAKEN tokens avant le lancement public</p>
+      <p class="text-purple-400 solana-glow font-semibold">⚡ Token natif Solana | Prix en USD</p>
     </div>
   </section>
 
@@ -74,11 +74,11 @@
       <div class="space-y-6">
         <!-- Presale Progress -->
         <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-purple-500/30">
-          <h3 class="text-2xl neon mb-4" data-i18n="progress-title">Progression Presale</h3>
+          <h3 class="text-2xl neon mb-4">Progression Presale</h3>
           <div class="space-y-4">
             <div>
               <div class="flex justify-between mb-2">
-                <span data-i18n="sold">Tokens vendus</span>
+                <span>Tokens vendus</span>
                 <span id="progress-percent" class="solana-glow">24%</span>
               </div>
               <div class="w-full bg-purple-900/30 rounded-full h-3 border border-purple-500/30">
@@ -90,47 +90,30 @@
               </div>
             </div>
             <div class="p-4 bg-purple-500/10 rounded border border-purple-500/30">
-              <p class="text-sm text-gray-300 mb-2" data-i18n="presale-price">Prix actuel:</p>
+              <p class="text-sm text-gray-300 mb-2">Prix actuel:</p>
               <p class="text-3xl neon">$0.12</p>
-              <p class="text-xs text-gray-400 mt-2" data-i18n="price-increases">Le prix augmente à chaque phase</p>
+              <p class="text-xs text-gray-400 mt-2">Le prix augmente à chaque phase</p>
             </div>
           </div>
         </div>
 
         <!-- Staking Pool -->
         <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-cyan-500/30">
-          <h3 class="text-2xl neon mb-4" data-i18n="staking-title">🔒 Pool de Staking</h3>
+          <h3 class="text-2xl neon mb-4">🔒 Pool de Staking</h3>
           <div class="space-y-4">
             <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
-              <p class="text-sm text-gray-300" data-i18n="apy-30">APY 30 jours</p>
+              <p class="text-sm text-gray-300">APY 30 jours</p>
               <p class="text-2xl text-cyan-400 font-bold">15% APY</p>
             </div>
             <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
-              <p class="text-sm text-gray-300" data-i18n="apy-90">APY 90 jours</p>
+              <p class="text-sm text-gray-300">APY 90 jours</p>
               <p class="text-2xl text-cyan-400 font-bold">35% APY</p>
             </div>
             <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
-              <p class="text-sm text-gray-300" data-i18n="apy-180">APY 180 jours</p>
+              <p class="text-sm text-gray-300">APY 180 jours</p>
               <p class="text-2xl text-cyan-400 font-bold">50% APY</p>
             </div>
-            <button onclick="toggleStakingForm()" class="w-full mt-4 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg hover:shadow-lg transition" data-i18n="stake-btn">Staker</button>
-          </div>
-        </div>
-
-        <!-- Referral System -->
-        <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-green-500/30">
-          <h3 class="text-2xl neon mb-4" data-i18n="referral-title">🎁 Programme de Parrainage</h3>
-          <div class="space-y-3 text-sm text-gray-300">
-            <div class="p-3 bg-green-500/10 rounded border border-green-500/30">
-              <p class="text-green-300 font-semibold" data-i18n="ref-bonus">Bonus de parrainage</p>
-              <p>+10% sur chaque achat parrainé</p>
-            </div>
-            <div class="p-3 bg-green-500/10 rounded border border-green-500/30">
-              <p class="text-green-300 font-semibold" data-i18n="ref-unlimited">Illimité</p>
-              <p>Pas de limite de parrainages</p>
-            </div>
-            <input type="text" id="referral-code" placeholder="Votre code de parrainage" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-sm" readonly>
-            <button onclick="copyReferralCode()" class="w-full px-3 py-2 bg-green-600/50 rounded hover:bg-green-600 transition text-sm" data-i18n="copy-btn">Copier</button>
+            <button onclick="toggleStakingForm()" class="w-full mt-4 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg hover:shadow-lg transition">Staker</button>
           </div>
         </div>
       </div>
@@ -139,126 +122,117 @@
       <div class="space-y-6">
         <!-- Card Payment -->
         <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-pink-500/30">
-          <h3 class="text-2xl neon mb-4" data-i18n="buy-card">💳 Acheter avec Carte</h3>
+          <h3 class="text-2xl neon mb-4">💳 Acheter avec Carte</h3>
           <form id="card-form" class="space-y-4">
             <div>
-              <label class="block text-sm text-gray-300 mb-2" data-i18n="amount-usd">Montant (USD)</label>
+              <label class="block text-sm text-gray-300 mb-2">Montant (USD)</label>
               <input type="number" id="amount-usd" placeholder="100" min="10" max="5000" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
               <p class="text-xs text-gray-400 mt-1" id="tokens-calc">= 0 KRAKEN</p>
             </div>
             <div>
-              <label class="block text-sm text-gray-300 mb-2" data-i18n="email">Email</label>
+              <label class="block text-sm text-gray-300 mb-2">Email</label>
               <input type="email" placeholder="votre@email.com" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
             </div>
-            <div class="p-3 bg-purple-500/10 rounded border border-purple-500/30">
-              <div class="flex justify-between text-sm mb-2">
-                <span data-i18n="subtotal">Sous-total</span>
-                <span id="subtotal">100 USD</span>
-              </div>
-              <div class="flex justify-between text-sm mb-2">
-                <span data-i18n="fees">Frais</span>
-                <span id="fees">2.5 USD</span>
-              </div>
-              <div class="flex justify-between font-bold border-t border-purple-500/30 pt-2 mt-2">
-                <span data-i18n="total">Total</span>
-                <span id="total">102.5 USD</span>
-              </div>
-            </div>
-            <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-pink-500 rounded-lg font-semibold hover:shadow-lg transition" data-i18n="pay-btn">Payer avec Carte</button>
+            <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-pink-500 rounded-lg font-semibold hover:shadow-lg transition">Payer avec Carte</button>
           </form>
+        </div>
+
+        <!-- Moonpay Payment -->
+        <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-yellow-500/30">
+          <h3 class="text-2xl neon mb-4">🌕 Acheter via Moonpay</h3>
+          <button id="moonpay-btn" class="w-full px-4 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg font-semibold hover:shadow-lg transition">
+            Acheter via Moonpay
+          </button>
         </div>
 
         <!-- Crypto Payment -->
         <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-purple-500/30">
-          <h3 class="text-2xl neon mb-4" data-i18n="buy-crypto">⚡ Acheter avec Solana</h3>
-          <div class="space-y-4">
-            <p class="text-sm text-gray-300" data-i18n="wallet-connect">Connectez votre wallet Solana</p>
-            <button id="connect-wallet-btn" class="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg font-semibold hover:shadow-lg transition" data-i18n="connect-wallet">Connecter Wallet</button>
-            <div class="p-3 bg-purple-500/10 rounded border border-purple-500/30">
-              <p class="text-xs text-gray-400 text-center" data-i18n="wallet-support">Phantom • Magic Eden • Ledger</p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Benefits Box -->
-        <div class="card-hover p-6 rounded-lg bg-gradient-to-br from-green-900/20 to-cyan-900/20 border border-green-500/30">
-          <h3 class="text-lg neon mb-3" data-i18n="benefits-title">✨ Avantages Presale</h3>
-          <ul class="text-sm text-gray-300 space-y-2">
-            <li>✅ <span data-i18n="benefit-1">Prix early-bird garanti</span></li>
-            <li>✅ <span data-i18n="benefit-2">Allocation bonus +5%</span></li>
-            <li>✅ <span data-i18n="benefit-3">Accès VIP à Discord</span></li>
-            <li>✅ <span data-i18n="benefit-4">NFT Genesis gratuit</span></li>
-            <li>✅ <span data-i18n="benefit-5">Staking immédiat possible</span></li>
-          </ul>
+          <h3 class="text-2xl neon mb-4">⚡ Acheter avec Solana</h3>
+          <button id="connect-wallet-btn" class="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg font-semibold hover:shadow-lg transition">Connecter Wallet</button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Solana & SPL Token Script -->
-  <script src="https://unpkg.com/@solana/web3.js@1.88.0/lib/index.iife.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@solana/spl-token@0.3.5/lib/index.iife.js"></script>
+  <!-- Staking Modal -->
+  <div id="staking-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
+    <div class="bg-[#0a0c1a] border border-cyan-500/30 rounded-lg p-6 max-w-md w-full mx-4">
+      <div class="flex justify-between items-center mb-4">
+        <h3 class="text-2xl neon">Staker KRAKEN</h3>
+        <button onclick="toggleStakingForm()" class="text-gray-400 hover:text-white text-2xl">✕</button>
+      </div>
+      <form id="staking-form" class="space-y-4">
+        <div>
+          <label class="block text-sm text-gray-300 mb-2">Montant à staker</label>
+          <input type="number" id="stake-amount" placeholder="1000" min="100" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
+        </div>
+        <div>
+          <label class="block text-sm text-gray-300 mb-2">Durée</label>
+          <select id="stake-duration" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white">
+            <option value="30">30 jours (15% APY)</option>
+            <option value="90">90 jours (35% APY)</option>
+            <option value="180">180 jours (50% APY)</option>
+          </select>
+        </div>
+        <div class="p-3 bg-cyan-500/10 rounded border border-cyan-500/30">
+          <p class="text-sm text-gray-300 mb-1">Récompenses estimées</p>
+          <p class="text-2xl text-cyan-400 font-bold" id="rewards-display">0 KRAKEN</p>
+        </div>
+        <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg font-semibold hover:shadow-lg transition">Confirmer Staking</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="https://cdn.moonpay.io/widget.js"></script>
   <script>
-  const connection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('devnet'), 'confirmed');
+    // Moonpay
+    const moonpayButton = document.getElementById('moonpay-btn');
+    moonpayButton.addEventListener('click', () => {
+      Moonpay.open({
+        apiKey: "VOTRE_API_KEY_MOONPAY",
+        currencyCode: "sol",
+        walletAddress: "ADRESSE_WALLET_RECEVEUR",
+        amount: 100,
+        onSuccess: (transaction) => { 
+          alert("Achat Moonpay réussi ! Tokens envoyés au wallet.");
+        }
+      });
+    });
 
-  // Token KRAKEN SPL (devnet pour test)
-  const TOKEN_MINT = new solanaWeb3.PublicKey("HePinRStcHBA9yHm8apYchaT3KJC2NbTXMdmn1ThRQoj");
-
-  // Wallet presale (⚠️ Devnet pour tests)
-  const PRESALE_WALLET = new solanaWeb3.PublicKey("7RqjtFPJ3z2uVA67BC6WPSU36MFjJpeMgju11Q5vzFzE");
-
-  // Clé privée du wallet presale ⚠️ Jamais exposer en prod
-  let PRESALE_KEYPAIR = null; // Mettre en serveur sécurisé pour production
-
-  let wallet = null;
-
-  // Connecter Phantom
-  async function connectWallet() {
-    if (window.solana && window.solana.isPhantom) {
-      try {
-        const resp = await window.solana.connect();
-        wallet = resp.publicKey;
-        alert('Wallet connecté: ' + wallet.toString());
-      } catch(err) {
-        alert('Erreur connexion wallet: ' + err.message);
-      }
-    } else {
-      alert('Installez Phantom Wallet pour continuer');
+    // Staking
+    function toggleStakingForm() {
+      const modal = document.getElementById('staking-modal');
+      modal.classList.toggle('hidden');
     }
-  }
 
-  // Envoyer tokens KRAKEN depuis presale wallet vers utilisateur
-  async function sendKrakenTokens(amount) {
-    if (!wallet) return alert('Connectez votre wallet');
-    if (!amount || amount <= 0) return alert('Montant invalide');
-    if (!PRESALE_KEYPAIR) return alert('Clé privée presale non configurée côté client !');
+    const stakeAmountInput = document.getElementById('stake-amount');
+    const stakeDurationSelect = document.getElementById('stake-duration');
+    const rewardsDisplay = document.getElementById('rewards-display');
 
-    try {
-      const token = new splToken.Token(connection, TOKEN_MINT, splToken.TOKEN_PROGRAM_ID, PRESALE_KEYPAIR);
-
-      const userTokenAccount = await token.getOrCreateAssociatedAccountInfo(wallet);
-      const presaleTokenAccount = await token.getOrCreateAssociatedAccountInfo(PRESALE_WALLET);
-
-      const tx = new solanaWeb3.Transaction().add(
-        splToken.Token.createTransferInstruction(
-          splToken.TOKEN_PROGRAM_ID,
-          presaleTokenAccount.address,
-          userTokenAccount.address,
-          PRESALE_KEYPAIR.publicKey,
-          [],
-          amount * (10 ** 9) // 9 décimales KRAKEN
-        )
-      );
-
-      const signature = await solanaWeb3.sendAndConfirmTransaction(connection, tx, [PRESALE_KEYPAIR]);
-      alert('KRAKEN envoyé ! TXID: ' + signature);
-    } catch(err) {
-      alert('Erreur: ' + err.message);
+    function calculateRewards() {
+      const amount = Number(stakeAmountInput.value);
+      const duration = Number(stakeDurationSelect.value);
+      let apy = 0;
+      if (duration === 30) apy = 0.15;
+      if (duration === 90) apy = 0.35;
+      if (duration === 180) apy = 0.50;
+      const rewards = amount * apy * (duration / 365);
+      rewardsDisplay.textContent = rewards.toFixed(9);
     }
-  }
 
-  document.getElementById('connect-wallet-btn').onclick = connectWallet;
+    stakeAmountInput.addEventListener('input', calculateRewards);
+    stakeDurationSelect.addEventListener('change', calculateRewards);
+
+    document.getElementById('staking-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const amount = Number(stakeAmountInput.value) * (10 ** 9);
+      const duration = Number(stakeDurationSelect.value);
+      console.log(`Staking ${amount} units pour ${duration} jours`);
+      alert(`Vous avez staké ${stakeAmountInput.value} KRAKEN pour ${duration} jours !`);
+      toggleStakingForm();
+    });
   </script>
+
 </body>
 </html>
-
