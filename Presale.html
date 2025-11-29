@@ -3,11 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Kraken Crypto — Presale & Staking</title>
-  <meta name="description" content="Presale KRAKEN token sur Solana. Achetez KRAKEN, stakez et gagnez des récompenses." />
+  <title>Kraken Crypto — Presale, Staking & Game</title>
+  <meta name="description" content="Presale KRAKEN token sur Solana. Achetez KRAKEN, stakez et gagnez des récompenses. Jeu mobile inclus." />
   <link rel="icon" href="assets/favicon.ico">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@solana/web3.js@latest/lib/index.iife.js"></script>
   <style>
     body { font-family: 'Orbitron', sans-serif; background:#05060a; color:#e6eef8; }
     .neon { text-shadow: 0 0 10px rgba(124,58,237,.8), 0 0 30px rgba(99,102,241,.6); }
@@ -21,152 +22,255 @@
 </head>
 <body class="min-h-screen">
 
-  <!-- Header -->
-  <header class="flex items-center justify-between p-6 bg-[#05060a]">
-    <div class="flex items-center gap-4">
-      <img src="assets/logo.png" alt="Kraken logo" class="h-12 w-12">
-      <h1 class="text-2xl md:text-3xl neon tracking-widest">KRAKEN</h1>
-    </div>
-  </header>
+<!-- Language Selector -->
+<div class="flex justify-end p-4 bg-[#05060a]">
+  <select id="language-selector" class="bg-[#0a0c1a] text-white border border-purple-500/30 rounded px-3 py-1">
+    <option value="fr">Français</option>
+    <option value="en">English</option>
+  </select>
+</div>
 
-  <!-- Hero Section -->
-  <section class="p-12 bg-gradient-to-b from-purple-900/20 to-[#05060a]">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-5xl neon mb-4">Presale KRAKEN</h2>
-      <p class="text-xl text-purple-300 mb-2">Achetez KRAKEN tokens avant le lancement public</p>
-      <p class="text-purple-400 solana-glow font-semibold">⚡ Token natif Solana | Prix en USD</p>
-    </div>
-  </section>
+<!-- Bandeau Solana -->
+<div class="banner-solana bg-gradient-to-r from-purple-900/40 via-purple-800/30 to-purple-900/40 border-b-2 border-purple-500 py-3 px-4">
+  <div class="max-w-6xl mx-auto flex items-center justify-center gap-3 flex-wrap">
+    <span class="text-lg">⚡</span>
+    <p class="text-center solana-glow font-semibold">
+      Presale KRAKEN Token | ⚡ Native on Solana
+    </p>
+    <span class="text-lg">⚡</span>
+  </div>
+</div>
 
-  <!-- Main Content -->
-  <section id="presale" class="p-12">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
-      <!-- Left: Staking + Referral -->
-      <div class="space-y-6">
+<!-- Header -->
+<header class="flex items-center justify-between p-6 bg-[#05060a]">
+  <div class="flex items-center gap-4">
+    <img src="assets/logo.png" alt="Kraken logo" class="h-12 w-12">
+    <h1 class="text-2xl md:text-3xl neon tracking-widest">KRAKEN</h1>
+  </div>
+  <nav class="hidden md:flex space-x-4">
+    <a href="index.html" class="hover:underline">Accueil</a>
+    <a href="index.html#lore" class="hover:underline">Lore</a>
+    <a href="index.html#roadmap" class="hover:underline">Roadmap</a>
+    <a href="#presale" class="hover:underline">Presale</a>
+  </nav>
+  <div class="md:hidden">
+    <button id="menu-btn" class="text-white text-3xl focus:outline-none">☰</button>
+  </div>
+</header>
 
-        <!-- Staking Pool -->
-        <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-cyan-500/30">
-          <h3 class="text-2xl neon mb-4">🔒 Pool de Staking</h3>
-          <div class="space-y-4">
-            <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
-              <p class="text-sm text-gray-300">APY 30 jours</p>
-              <p class="text-2xl text-cyan-400 font-bold">15% APY</p>
+<!-- Hero Section -->
+<section class="p-12 bg-gradient-to-b from-purple-900/20 to-[#05060a]">
+  <div class="max-w-4xl mx-auto text-center">
+    <h2 class="text-5xl neon mb-4">Presale KRAKEN</h2>
+    <p class="text-xl text-purple-300 mb-2">Achetez KRAKEN tokens avant le lancement public</p>
+    <p class="text-purple-400 solana-glow font-semibold">⚡ Token natif Solana | Prix en USD</p>
+  </div>
+</section>
+
+<!-- Main Content -->
+<section id="presale" class="p-12">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8">
+
+    <!-- Left: Presale Info -->
+    <div class="space-y-6">
+
+      <!-- Presale Progress -->
+      <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-purple-500/30">
+        <h3 class="text-2xl neon mb-4">Progression Presale</h3>
+        <div class="space-y-4">
+          <div>
+            <div class="flex justify-between mb-2">
+              <span>Tokens vendus</span>
+              <span id="progress-percent" class="solana-glow">24%</span>
             </div>
-            <button onclick="toggleStakingForm()" class="w-full mt-4 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg hover:shadow-lg transition">Staker</button>
+            <div class="w-full bg-purple-900/30 rounded-full h-3 border border-purple-500/30">
+              <div id="progress-bar" class="progress-bar h-3 rounded-full" style="width: 24%"></div>
+            </div>
+            <div class="flex justify-between mt-2 text-sm text-gray-400">
+              <span id="sold-count">600 000</span>
+              <span>/ 2 500 000 KRAKEN</span>
+            </div>
+          </div>
+          <div class="p-4 bg-purple-500/10 rounded border border-purple-500/30">
+            <p class="text-sm text-gray-300 mb-2">Prix actuel:</p>
+            <p class="text-3xl neon">$0.12</p>
+            <p class="text-xs text-gray-400 mt-2">Le prix augmente à chaque phase</p>
           </div>
         </div>
       </div>
 
-      <!-- Right: Wallet + Purchase -->
-      <div class="space-y-6">
-        <!-- Crypto Payment -->
-        <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-purple-500/30">
-          <h3 class="text-2xl neon mb-4">⚡ Acheter avec Solana</h3>
-          <div class="space-y-4">
-            <button id="connect-wallet-btn" class="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg font-semibold hover:shadow-lg transition">Connecter Wallet</button>
-            <!-- Wallet Balance -->
-            <div class="p-4 bg-purple-900/20 rounded border border-purple-500/30 text-center mt-4">
-              <p class="text-sm text-gray-400 mb-1">Solde Wallet:</p>
-              <p id="wallet-balance" class="text-xl neon">0 KRAKEN</p>
-            </div>
+      <!-- Staking Pool -->
+      <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-cyan-500/30">
+        <h3 class="text-2xl neon mb-4">🔒 Pool de Staking</h3>
+        <div class="space-y-4">
+          <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
+            <p class="text-sm text-gray-300">APY 30 jours</p>
+            <p class="text-2xl text-cyan-400 font-bold">15% APY</p>
           </div>
+          <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
+            <p class="text-sm text-gray-300">APY 90 jours</p>
+            <p class="text-2xl text-cyan-400 font-bold">35% APY</p>
+          </div>
+          <div class="p-4 bg-cyan-500/10 rounded border border-cyan-500/30">
+            <p class="text-sm text-gray-300">APY 180 jours</p>
+            <p class="text-2xl text-cyan-400 font-bold">50% APY</p>
+          </div>
+
+          <!-- Barre de progression staking -->
+          <div class="mt-4">
+            <span class="text-sm text-gray-300">Progression staking:</span>
+            <div class="w-full bg-purple-900/30 rounded-full h-3 border border-purple-500/30 mt-1">
+              <div id="staking-progress-bar" class="progress-bar h-3 rounded-full" style="width:0%"></div>
+            </div>
+            <p class="text-sm text-gray-400 mt-1">Récompenses estimées: <span id="staking-rewards">0 KRAKEN</span></p>
+          </div>
+
+          <div class="mt-4">
+            <label class="block text-sm text-gray-300 mb-2">Montant à staker</label>
+            <input type="number" id="stake-amount" placeholder="1000" min="100" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white">
+          </div>
+          <div class="mt-2">
+            <label class="block text-sm text-gray-300 mb-2">Durée</label>
+            <select id="stake-duration" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white">
+              <option value="30">30 jours (15% APY)</option>
+              <option value="90">90 jours (35% APY)</option>
+              <option value="180">180 jours (50% APY)</option>
+            </select>
+          </div>
+          <button onclick="updateStaking()" class="w-full mt-4 px-4 py-2 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg hover:shadow-lg transition">Calculer Récompenses</button>
+        </div>
+      </div>
+
+      <!-- Referral System -->
+      <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-green-500/30">
+        <h3 class="text-2xl neon mb-4">🎁 Programme de Parrainage</h3>
+        <div class="space-y-3 text-sm text-gray-300">
+          <div class="p-3 bg-green-500/10 rounded border border-green-500/30">
+            <p class="text-green-300 font-semibold">Bonus de parrainage</p>
+            <p>+10% sur chaque achat parrainé</p>
+          </div>
+          <input type="text" id="referral-code" placeholder="Votre code de parrainage" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-sm" readonly>
+          <button onclick="copyReferralCode()" class="w-full px-3 py-2 bg-green-600/50 rounded hover:bg-green-600 transition text-sm">Copier</button>
         </div>
       </div>
     </div>
-  </section>
 
-  <!-- Staking Modal -->
-  <div id="staking-modal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-    <div class="bg-[#0a0c1a] border border-cyan-500/30 rounded-lg p-6 max-w-md w-full mx-4">
-      <div class="flex justify-between items-center mb-4">
-        <h3 class="text-2xl neon">Staker KRAKEN</h3>
-        <button onclick="toggleStakingForm()" class="text-gray-400 hover:text-white text-2xl">✕</button>
+    <!-- Right: Purchase Form -->
+    <div class="space-y-6">
+      <!-- Card Payment -->
+      <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-pink-500/30">
+        <h3 class="text-2xl neon mb-4">💳 Acheter avec Carte</h3>
+        <form id="card-form" class="space-y-4">
+          <div>
+            <label class="block text-sm text-gray-300 mb-2">Montant (USD)</label>
+            <input type="number" id="amount-usd" placeholder="100" min="10" max="5000" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
+            <p class="text-xs text-gray-400 mt-1" id="tokens-calc">= 0 KRAKEN</p>
+          </div>
+          <div>
+            <label class="block text-sm text-gray-300 mb-2">Email</label>
+            <input type="email" placeholder="votre@email.com" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
+          </div>
+          <div class="p-3 bg-purple-500/10 rounded border border-purple-500/30">
+            <div class="flex justify-between text-sm mb-2">
+              <span>Sous-total</span>
+              <span id="subtotal">100 USD</span>
+            </div>
+            <div class="flex justify-between text-sm mb-2">
+              <span>Frais</span>
+              <span id="fees">2.5 USD</span>
+            </div>
+            <div class="flex justify-between font-bold border-t border-purple-500/30 pt-2 mt-2">
+              <span>Total</span>
+              <span id="total">102.5 USD</span>
+            </div>
+          </div>
+          <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-indigo-600 to-pink-500 rounded-lg font-semibold hover:shadow-lg transition">Payer avec Carte</button>
+        </form>
       </div>
-      <form id="staking-form" class="space-y-4">
-        <div>
-          <label class="block text-sm text-gray-300 mb-2">Montant à staker</label>
-          <input type="number" id="stake-amount" placeholder="1000" min="100" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white" required>
-        </div>
-        <div>
-          <label class="block text-sm text-gray-300 mb-2">Durée</label>
-          <select id="stake-duration" class="w-full px-3 py-2 bg-purple-900/30 border border-purple-500/30 rounded text-white">
-            <option value="30">30 jours (15% APY)</option>
-            <option value="90">90 jours (35% APY)</option>
-            <option value="180">180 jours (50% APY)</option>
-          </select>
-        </div>
-        <div class="p-3 bg-cyan-500/10 rounded border border-cyan-500/30">
-          <p class="text-sm text-gray-300 mb-1">Récompenses estimées</p>
-          <p class="text-2xl text-cyan-400 font-bold" id="rewards-display">0 KRAKEN</p>
-        </div>
 
-        <!-- Barre de progression staking -->
-        <div class="w-full bg-purple-900/30 h-3 rounded-full mt-2">
-          <div id="staking-progress-bar" class="h-3 rounded-full progress-bar" style="width: 0%"></div>
-        </div>
-        <p class="text-xs text-gray-400 mt-1 text-center" id="staking-progress-text">0 / 1000 KRAKEN stakés</p>
+      <!-- Moonpay Payment -->
+      <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-yellow-500/30">
+        <h3 class="text-2xl neon mb-4">💸 Acheter avec Moonpay</h3>
+        <button id="moonpay-btn" class="w-full px-4 py-3 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-lg font-semibold hover:shadow-lg transition">
+          Payer avec Moonpay
+        </button>
+      </div>
 
-        <button type="submit" class="w-full px-4 py-3 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-lg font-semibold hover:shadow-lg transition">Confirmer Staking</button>
-      </form>
+      <!-- Crypto Payment -->
+      <div class="card-hover p-6 rounded-lg bg-[#0a0c1a] border border-purple-500/30">
+        <h3 class="text-2xl neon mb-4">⚡ Acheter avec Solana</h3>
+        <div class="space-y-4">
+          <p class="text-sm text-gray-300">Connectez votre wallet Solana</p>
+          <button id="connect-wallet-btn" class="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-500 rounded-lg font-semibold hover:shadow-lg transition">Connecter Wallet</button>
+          <div class="p-3 bg-purple-500/10 rounded border border-purple-500/30 text-center">
+            <p class="text-xs text-gray-400">Phantom • Magic Eden • Ledger</p>
+            <p class="text-sm mt-1">SOL: <span id="wallet-sol">0</span> | KRAKEN: <span id="wallet-kraken">0</span></p>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
+</section>
 
-  <script>
-    // Toggle Staking Modal
-    function toggleStakingForm() {
-      const modal = document.getElementById('staking-modal');
-      modal.classList.toggle('hidden');
-    }
+<script>
+let walletPublicKey = null;
+let solanaConnection = new solanaWeb3.Connection(solanaWeb3.clusterApiUrl('mainnet-beta'));
 
-    // Wallet connection simulation
-    const connectWalletBtn = document.getElementById('connect-wallet-btn');
-    const walletBalanceDisplay = document.getElementById('wallet-balance');
+async function connectWallet() {
+  if (!window.solana) { alert("Installez Phantom pour continuer"); return; }
+  try {
+    const resp = await window.solana.connect();
+    walletPublicKey = resp.publicKey.toString();
+    updateWalletBalances();
+  } catch (err) { console.error(err); }
+}
 
-    let walletBalance = 0;
+async function updateWalletBalances() {
+  if (!walletPublicKey) return;
+  const solBalance = await solanaConnection.getBalance(new solanaWeb3.PublicKey(walletPublicKey));
+  const solFormatted = (solBalance / 1e9).toFixed(9);
+  document.getElementById("wallet-sol").innerText = solFormatted;
+  const krakenBalance = await getKrakenBalance(walletPublicKey);
+  document.getElementById("wallet-kraken").innerText = krakenBalance.toFixed(9);
+}
 
-    connectWalletBtn.addEventListener('click', async () => {
-      // Simule récupération solde wallet
-      walletBalance = 1234.567890123;
-      walletBalanceDisplay.textContent = walletBalance.toFixed(9) + ' KRAKEN';
-      alert('Wallet connecté ! Solde mis à jour.');
-    });
+async function getKrakenBalance(pubKey) { return 1000; }
 
-    // Staking
-    const stakeForm = document.getElementById('staking-form');
-    const stakingProgressBar = document.getElementById('staking-progress-bar');
-    const stakingProgressText = document.getElementById('staking-progress-text');
-    const rewardsDisplay = document.getElementById('rewards-display');
+document.getElementById("connect-wallet-btn").addEventListener("click", connectWallet);
 
-    let stakedTotal = 0;
-    const stakingCap = 1000;
+// Moonpay
+const MOONPAY_API_KEY = "VOTRE_CLE_API_MOONPAY";
+document.getElementById("moonpay-btn").addEventListener("click", () => {
+  if (!walletPublicKey) { alert("Connectez votre wallet Phantom d'abord"); return; }
+  const amountUSD = document.getElementById("amount-usd").value || 100;
+  const url = `https://buy.moonpay.com?apiKey=${MOONPAY_API_KEY}&currencyCode=sol&walletAddress=${walletPublicKey}&baseCurrencyAmount=${amountUSD}`;
+  window.open(url, "_blank");
+});
 
-    function updateStakingProgress() {
-      const percent = Math.min((stakedTotal / stakingCap) * 100, 100);
-      stakingProgressBar.style.width = percent + '%';
-      stakingProgressText.textContent = `${stakedTotal.toFixed(9)} / ${stakingCap} KRAKEN stakés`;
-    }
+// Staking
+const stakingProgressBar = document.getElementById("staking-progress-bar");
+function updateStaking() {
+  const amount = parseFloat(document.getElementById("stake-amount").value) || 0;
+  const duration = parseInt(document.getElementById("stake-duration").value);
+  const apyMap = {30:0.15,90:0.35,180:0.5};
+  const rewards = amount * apyMap[duration] * (duration/365);
+  document.getElementById("staking-rewards").innerText = rewards.toFixed(9) + " KRAKEN";
+  // Progression bar exemple
+  const totalStaked = 50000; // Exemple
+  const percent = Math.min((amount/totalStaked)*100,100);
+  stakingProgressBar.style.width = percent + "%";
+}
 
-    stakeForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const stakeAmount = Number(document.getElementById('stake-amount').value);
-      const duration = Number(document.getElementById('stake-duration').value);
+// Referral copy
+function copyReferralCode() {
+  const code = document.getElementById("referral-code");
+  code.select();
+  code.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(code.value);
+  alert("Code copié !");
+}
+</script>
 
-      // Calcul récompenses simulées
-      let rewardRate = 0.15; // APY 30 jours par défaut
-      if(duration === 90) rewardRate = 0.35;
-      if(duration === 180) rewardRate = 0.50;
-
-      const rewards = stakeAmount * rewardRate * (duration/365);
-      rewardsDisplay.textContent = rewards.toFixed(9) + ' KRAKEN';
-
-      stakedTotal += stakeAmount;
-      updateStakingProgress();
-      toggleStakingForm();
-      alert(`Vous avez staké ${stakeAmount} KRAKEN !`);
-    });
-
-    // Initialise barre de progression
-    updateStakingProgress();
-  </script>
 </body>
 </html>
