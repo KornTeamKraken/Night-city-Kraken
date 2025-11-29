@@ -1,0 +1,15 @@
+{
+  "name": "Kraken",
+  "symbol": "Krk",
+  "description": "🦑 Kraken Token – Le cœur battant de l’écosystème Kraken App ! Staker, échanger et profiter de récompenses exclusives tout en faisant partie de notre univers décentralisé. Puissance, liberté et opportunités infinies à portée de main.",
+  "image": "https://www.noelshack.com/2025-48-6-1764381323-capture-d-cran-2025-11-29-025109.png",
+  "attributes": [],
+  "properties": {
+    "creators": [
+      {
+        "address": "4P4oWnPgW9DHk251scY5ndo9J4HjEiyKPUgchwrRKC9o",
+        "share": 100
+      }
+    ]
+  }
+}
