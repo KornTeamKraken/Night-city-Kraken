@@ -510,6 +510,31 @@
             transition: width 0.3s ease;
         }
 
+        /* Wallet Connect Button */
+        .wallet-connect-btn {
+            margin-top: 20px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #8a2be2, #ff1493);
+            border: none;
+            border-radius: 30px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
+        }
+
+        .wallet-connect-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 0 30px rgba(255, 20, 147, 0.8);
+        }
+
+        .wallet-connect-btn.connected {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+        }
+
         /* Footer */
         footer {
             text-align: center;
@@ -564,6 +589,14 @@
             <div class="logo">KRAKEN</div>
             <div class="subtitle">⚡ Token Presale Officielle</div>
             <div class="tagline">Plonge dans l'univers cyberpunk de Kraken — Mine, explore, capture, influence la cité</div>
+            
+            <button class="wallet-connect-btn" id="walletBtn" onclick="connectWallet()">
+                🔌 Connecter Wallet Solana
+            </button>
+            <div id="walletInfo" style="display: none; margin-top: 15px; padding: 15px; background: rgba(138, 43, 226, 0.2); border: 2px solid rgba(138, 43, 226, 0.5); border-radius: 15px; max-width: 500px; margin-left: auto; margin-right: auto;">
+                <div style="color: #4caf50; font-weight: bold; margin-bottom: 5px;">✅ Wallet connecté</div>
+                <div style="color: #a0a0a0; font-size: 0.9rem; word-break: break-all;" id="connectedAddress"></div>
+            </div>
         </header>
 
         <div class="presale-section">
@@ -708,17 +741,17 @@
             <div class="stats-grid">
                 <div class="stat-card staking-card" onclick="selectStakingPlan(30, 5)">
                     <div class="staking-badge">30 JOURS</div>
-                    <div class="stat-value">5% APY</div>
+                    <div class="stat-value">5% APR</div>
                     <div class="stat-label">Flexible</div>
                 </div>
                 <div class="stat-card staking-card" onclick="selectStakingPlan(60, 12)">
                     <div class="staking-badge">60 JOURS</div>
-                    <div class="stat-value">12% APY</div>
+                    <div class="stat-value">12% APR</div>
                     <div class="stat-label">Recommandé</div>
                 </div>
                 <div class="stat-card staking-card" onclick="selectStakingPlan(90, 20)">
                     <div class="staking-badge">90 JOURS</div>
-                    <div class="stat-value">20% APY</div>
+                    <div class="stat-value">20% APR</div>
                     <div class="stat-label">🔥 Maximum</div>
                 </div>
             </div>
@@ -878,22 +911,177 @@
             withdrawals: []
         };
 
+        // Wallet Solana
+        let connectedWallet = null;
+        let walletProvider = null;
+
         // Staking
         let selectedStakingDays = 0;
         let selectedStakingAPY = 0;
 
-        // Charger les données au démarrage
-        async function loadUserData() {
+        // Détecter Phantom Wallet
+        function getProvider() {
+            if ('phantom' in window) {
+                const provider = window.phantom?.solana;
+                if (provider?.isPhantom) {
+                    return provider;
+                }
+            }
+            return null;
+        }
+
+        // Connecter le wallet
+        async function connectWallet() {
             try {
-                const result = await window.storage.get('kraken_user_data');
+                const provider = getProvider();
+                
+                if (!provider) {
+                    alert('❌ Phantom Wallet non détecté!\n\nInstalle Phantom depuis:\nhttps://phantom.app');
+                    window.open('https://phantom.app', '_blank');
+                    return;
+                }
+
+                walletProvider = provider;
+                
+                // Demander la connexion
+                const resp = await provider.connect();
+                connectedWallet = resp.publicKey.toString();
+                
+                // Mettre à jour l'interface
+                document.getElementById('walletBtn').textContent = '✅ Wallet connecté';
+                document.getElementById('walletBtn').classList.add('connected');
+                document.getElementById('walletBtn').onclick = disconnectWallet;
+                
+                document.getElementById('connectedAddress').textContent = connectedWallet;
+                document.getElementById('walletInfo').style.display = 'block';
+                
+                // Pré-remplir l'adresse de retrait
+                document.getElementById('withdrawAddress').value = connectedWallet;
+                
+                // Charger les données utilisateur pour ce wallet
+                await loadUserDataForWallet(connectedWallet);
+                
+                console.log('✅ Wallet connecté:', connectedWallet);
+                
+            } catch (err) {
+                console.error('Erreur connexion wallet:', err);
+                if (err.code === 4001) {
+                    alert('❌ Connexion refusée par l\'utilisateur');
+                } else {
+                    alert('❌ Erreur de connexion au wallet');
+                }
+            }
+        }
+
+        // Déconnecter le wallet
+        async function disconnectWallet() {
+            try {
+                if (walletProvider) {
+                    await walletProvider.disconnect();
+                }
+                
+                connectedWallet = null;
+                walletProvider = null;
+                
+                document.getElementById('walletBtn').textContent = '🔌 Connecter Wallet Solana';
+                document.getElementById('walletBtn').classList.remove('connected');
+                document.getElementById('walletBtn').onclick = connectWallet;
+                document.getElementById('walletInfo').style.display = 'none';
+                document.getElementById('withdrawAddress').value = '';
+                
+                console.log('✅ Wallet déconnecté');
+                
+            } catch (err) {
+                console.error('Erreur déconnexion:', err);
+            }
+        }
+
+        // Charger les données pour un wallet spécifique
+        async function loadUserDataForWallet(wallet) {
+            try {
+                const result = await window.storage.get(`kraken_user_${wallet}`);
                 if (result && result.value) {
                     userData = JSON.parse(result.value);
                     updateBalances();
                     renderActiveStakes();
                     renderWithdrawHistory();
+                } else {
+                    // Nouveau wallet, réinitialiser les données
+                    userData = {
+                        virtualBalance: 0,
+                        stakedBalance: 0,
+                        stakes: [],
+                        withdrawals: []
+                    };
+                    updateBalances();
+                    renderActiveStakes();
+                    renderWithdrawHistory();
                 }
             } catch (error) {
-                console.log('Pas de données utilisateur existantes');
+                console.log('Pas de données pour ce wallet');
+                userData = {
+                    virtualBalance: 0,
+                    stakedBalance: 0,
+                    stakes: [],
+                    withdrawals: []
+                };
+                updateBalances();
+            }
+        }
+
+        // Sauvegarder les données (modifier pour inclure le wallet)
+        async function saveUserData() {
+            try {
+                if (connectedWallet) {
+                    await window.storage.set(`kraken_user_${connectedWallet}`, JSON.stringify(userData));
+                } else {
+                    // Fallback si pas de wallet connecté
+                    await window.storage.set('kraken_user_data', JSON.stringify(userData));
+                }
+            } catch (error) {
+                console.error('Erreur de sauvegarde:', error);
+            }
+        }
+
+        // Charger les données au démarrage
+        async function loadUserData() {
+            // Essayer de se reconnecter automatiquement au wallet
+            const provider = getProvider();
+            if (provider) {
+                try {
+                    const resp = await provider.connect({ onlyIfTrusted: true });
+                    if (resp.publicKey) {
+                        connectedWallet = resp.publicKey.toString();
+                        walletProvider = provider;
+                        
+                        document.getElementById('walletBtn').textContent = '✅ Wallet connecté';
+                        document.getElementById('walletBtn').classList.add('connected');
+                        document.getElementById('walletBtn').onclick = disconnectWallet;
+                        document.getElementById('connectedAddress').textContent = connectedWallet;
+                        document.getElementById('walletInfo').style.display = 'block';
+                        document.getElementById('withdrawAddress').value = connectedWallet;
+                        
+                        await loadUserDataForWallet(connectedWallet);
+                    }
+                } catch (err) {
+                    // L'utilisateur n'a pas approuvé la connexion automatique
+                    console.log('Connexion automatique non autorisée');
+                }
+            }
+            
+            // Si pas de wallet connecté, charger les données génériques
+            if (!connectedWallet) {
+                try {
+                    const result = await window.storage.get('kraken_user_data');
+                    if (result && result.value) {
+                        userData = JSON.parse(result.value);
+                        updateBalances();
+                        renderActiveStakes();
+                        renderWithdrawHistory();
+                    }
+                } catch (error) {
+                    console.log('Pas de données utilisateur existantes');
+                }
             }
         }
 
@@ -929,7 +1117,8 @@
         function calculateStakingRewards() {
             const amount = parseFloat(document.getElementById('stakeAmount').value) || 0;
             if (amount > 0 && selectedStakingAPY > 0) {
-                const rewards = (amount * selectedStakingAPY / 100) * (selectedStakingDays / 365);
+                // APR direct : pas de calcul annualisé, juste le pourcentage fixe
+                const rewards = amount * (selectedStakingAPY / 100);
                 document.getElementById('stakingRewards').textContent = 
                     rewards.toLocaleString('fr-FR', { maximumFractionDigits: 2 });
             } else {
@@ -957,7 +1146,8 @@
                 return;
             }
             
-            const rewards = (amount * selectedStakingAPY / 100) * (selectedStakingDays / 365);
+            // APR direct : pourcentage fixe sans annualisation
+            const rewards = amount * (selectedStakingAPY / 100);
             const endDate = new Date();
             endDate.setDate(endDate.getDate() + selectedStakingDays);
             
@@ -981,7 +1171,7 @@
             document.getElementById('stakeAmount').value = '';
             document.getElementById('stakingRewards').textContent = '0';
             
-            alert(`✅ Stake créé avec succès!\n${amount.toLocaleString('fr-FR')} KRAKEN stakés pour ${selectedStakingDays} jours`);
+            alert(`✅ Stake créé avec succès!\n${amount.toLocaleString('fr-FR')} KRAKEN stakés pour ${selectedStakingDays} jours\n+${rewards.toLocaleString('fr-FR')} KRAKEN de récompenses`);
         }
 
         // Afficher les stakes actifs
@@ -1011,7 +1201,7 @@
                                     ${stake.amount.toLocaleString('fr-FR')} KRAKEN
                                 </div>
                                 <div style="color: #a0a0a0; font-size: 0.8rem;">
-                                    ${stake.apy}% APY — ${stake.days} jours
+                                    ${stake.apy}% APR — ${stake.days} jours
                                 </div>
                             </div>
                             <div style="text-align: right;">
@@ -1166,6 +1356,11 @@
 
         // Simuler un achat (pour tester)
         function simulatePurchase() {
+            if (!connectedWallet) {
+                alert('❌ Connecte d\'abord ton wallet Solana !');
+                return;
+            }
+            
             const amount = 10000; // Simule l'achat de 10k tokens
             userData.virtualBalance += amount;
             saveUserData();
