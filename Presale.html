@@ -523,7 +523,7 @@
         // Récupérer les stats depuis le backend
         async function fetchPresaleStats() {
             try {
-                const response = await fetch('http://158.178.197.42:3000/api/stats');
+                const response = await fetch('/api/stats');
                 const data = await response.json();
                 tokensSold = data.totalSold;
                 document.getElementById('tokensSold').textContent = tokensSold.toLocaleString('fr-FR');
@@ -547,7 +547,7 @@
                 return;
             }
             try {
-                const response = await fetch('http://158.178.197.42:3000/api/buy', {
+                const response = await fetch('/api/buy', { ... }){
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
